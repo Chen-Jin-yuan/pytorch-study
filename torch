@@ -1,0 +1,4132 @@
+# 1.Tensor
+
+## 1.创建方法 torch.tensor()
+
+torch.tensor(data, dtype=None, device=None, requires_grad=False, pin_memory=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128101619991.png" alt="image-20220128101619991" style="zoom:80%;" />
+
+## 2.torch.from_numpy(ndarray)
+
+从 numpy 创建 tensor。利用这个方法创建的 tensor 和原来的 ndarray 共享内存，当修改其中一个数据，另外一个也会被改动
+
+## 3.根据数值创建 Tensor
+
+* torch.zeros(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128101849344.png" alt="image-20220128101849344" style="zoom:80%;" />
+
+* torch.zeros_like(input, dtype=None, layout=None, device=None, requires_grad=False, memory_format=torch.preserve_format)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128101930294.png" alt="image-20220128101930294" style="zoom:80%;" />
+
+* torch.full(size, fill_value, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102031375.png" alt="image-20220128102031375" style="zoom:80%;" />
+
+* torch.arange(start=0, end, step=1, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102113062.png" alt="image-20220128102113062" style="zoom:80%;" />
+
+* torch.linspace(start, end, steps=100, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102147712.png" alt="image-20220128102147712" style="zoom:80%;" />
+
+* torch.logspace(start, end, steps=100, base=10.0, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102222174.png" alt="image-20220128102222174" style="zoom:80%;" />
+
+* torch.eye(n, m=None, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102252642.png" alt="image-20220128102252642" style="zoom:80%;" />
+
+## 4.根据概率创建Tensor
+
+* torch.normal(mean, std, *, generator=None, out=None)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102341285.png" alt="image-20220128102341285" style="zoom:80%;" />
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102414179.png" alt="image-20220128102414179" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102438021.png" alt="image-20220128102438021" style="zoom:80%;" />
+
+**都为张量时，每个位置取对应的均值和方差构成一个正态分布再从中取样，其中 1.6614 是从正态分布 $N(1,1)$ 中采样得到的，其他数字以此类推。**
+
+* torch.randn(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102657842.png" alt="image-20220128102657842" style="zoom:80%;" />
+
+* torch.rand(*size, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102744904.png" alt="image-20220128102744904" style="zoom:80%;" />
+
+* torch.randint(low=0, high, size, *, generator=None, out=None,
+  dtype=None, layout=torch.strided, device=None, requires_grad=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102814518.png" alt="image-20220128102814518" style="zoom:80%;" />
+
+* torch.randperm(n, out=None, dtype=torch.int64, layout=torch.strided, device=None, requires_grad=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102839458.png" alt="image-20220128102839458" style="zoom:80%;" />
+
+* torch.bernoulli(input, *, generator=None, out=None)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102857250.png" alt="image-20220128102857250" style="zoom:80%;" />
+
+# 2.张量操作
+
+## 1.拼接
+
+* torch.cat(tensors, dim=0, out=None)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128102952649.png" alt="image-20220128102952649" style="zoom:80%;" />
+
+* torch.stack(tensors, dim=0, out=None)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103013240.png" alt="image-20220128103013240" style="zoom:80%;" />
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103050430.png" alt="image-20220128103050430" style="zoom:80%;" />
+
+## 2.切分
+
+* torch.chunk(input, chunks, dim=0)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103115398.png" alt="image-20220128103115398" style="zoom:80%;" />
+
+* torch.split(tensor, split_size_or_sections, dim=0)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103154269.png" alt="image-20220128103154269" style="zoom:80%;" />
+
+## 3.索引
+
+* torch.index_select(input, dim, index, out=None)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103251333.png" alt="image-20220128103251333" style="zoom:80%;" />
+
+* torch.masked_select(input, mask, out=None)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103423997.png" alt="image-20220128103423997" style="zoom:80%;" />
+
+## 4.变换
+
+* torch.reshape(input, shape)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103446310.png" alt="image-20220128103446310" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103513429.png" alt="image-20220128103513429" style="zoom:80%;" />
+
+* torch.transpose(input, dim0, dim1)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103528034.png" alt="image-20220128103528034" style="zoom:80%;" />
+
+* torch.squeeze(input, dim=None, out=None)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103611013.png" alt="image-20220128103611013" style="zoom:80%;" />
+
+* torch.unsqueeze(input, dim)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103625005.png" alt="image-20220128103625005" style="zoom:80%;" />
+
+# 3.数学运算
+
+* torch.add(input, other, out=None)
+  torch.add(input, other, *, alpha=1, out=None)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128103713508.png" alt="image-20220128103713508" style="zoom:80%;" />
+
+* torch.addcdiv(input, tensor1, tensor2, *, value=1, out=None)
+
+  计算公式为：$out =\operatorname{input}+$ value $\times \frac{\text { tensor }_1}{\text { tensor }_2}$
+
+* torch.addcmul(input, tensor1, tensor2, *, value=1, out=None)
+
+  计算公式为：$out =$ input $+$ value $\times$ tensor $1 \times$ tensor $2$
+
+# 4.线性回归
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128104142249.png" alt="image-20220128104142249" style="zoom:80%;" />
+
+```python
+import torch
+import matplotlib.pyplot as plt
+torch.manual_seed(10)
+
+lr = 0.05  # 学习率
+
+# 创建训练数据
+x = torch.rand(20, 1) * 10  # x data (tensor), shape=(20, 1)
+# torch.randn(20, 1) 用于添加噪声
+y = 2*x + (5 + torch.randn(20, 1))  # y data (tensor), shape=(20, 1)
+
+# 构建线性回归参数
+w = torch.randn((1), requires_grad=True) # 设置梯度求解为 true
+b = torch.zeros((1), requires_grad=True) # 设置梯度求解为 true
+
+# 迭代训练 1000 次
+for iteration in range(1000):
+
+    # 前向传播，计算预测值
+    wx = torch.mul(w, x)
+    y_pred = torch.add(wx, b)
+
+    # 计算 MSE loss
+    loss = (0.5 * (y - y_pred) ** 2).mean()
+
+    # 反向传播
+    loss.backward()
+
+    # 更新参数
+    b.data.sub_(lr * b.grad)
+    w.data.sub_(lr * w.grad)
+
+    # 每次更新参数之后，都要清零张量的梯度
+    w.grad.zero_()
+    b.grad.zero_()
+
+    # 绘图，每隔 20 次重新绘制直线
+    if iteration % 20 == 0:
+
+        plt.scatter(x.data.numpy(), y.data.numpy())
+        plt.plot(x.data.numpy(), y_pred.data.numpy(), 'r-', lw=5)
+        plt.text(2, 20, 'Loss=%.4f' % loss.data.numpy(), fontdict={'size': 20, 'color':  'red'})
+        plt.xlim(1.5, 10)
+        plt.ylim(8, 28)
+        plt.title("Iteration: {}\nw: {} b: {}".format(iteration, w.data.numpy(), b.data.numpy()))
+        plt.pause(0.5)
+
+        # 如果 MSE 小于 1，则停止训练
+        if loss.data.numpy() < 1:
+            break
+```
+
+# 5.自动求取梯度
+
+* torch.autograd.backward(tensors, grad_tensors=None, retain_graph=None, create_graph=False, grad_variables=None)
+
+  ![image-20220128105000818](C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105000818.png)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105035222.png" alt="image-20220128105035222" style="zoom:80%;" />
+
+* torch.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105149273.png" alt="image-20220128105149273" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105310036.png" alt="image-20220128105310036" style="zoom:80%;" />
+
+* **需要注意的 3 个点：**
+  * 在每次反向传播求导时，计算的梯度不会自动清零。如果进行多次迭代计算梯度而没有清零，那么梯度会在前一次的基础上叠加。
+  * 依赖于叶子节点的节点，requires_grad 属性默认为 True。
+  * 叶子节点不可执行 inplace 操作。以加法来说，inplace 操作有`a += x`，`a.add_(x)`，改变后的值和原来的值内存地址是同一个。非inplace 操作有`a = a + x`，`a.add(x)`，改变后的值和原来的值内存地址不是同一个。如果在反向传播之前 inplace 改变了叶子 的值，再执行 backward() 会报错。
+
+# 6.逻辑回归
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105521085.png" alt="image-20220128105521085" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105531504.png" alt="image-20220128105531504" style="zoom:80%;" />
+
+* PyTorch 构建模型需要 5 大步骤：
+  * 数据：包括数据读取，数据清洗，进行数据划分和数据预处理，比如读取图片如何预处理及数据增强。
+  * 模型：包括构建模型模块，组织复杂网络，初始化网络参数，定义网络层。
+  * 损失函数：包括创建损失函数，设置损失函数超参数，根据不同任务选择合适的损失函数。
+  * 优化器：包括根据梯度使用某种优化器更新参数，管理模型参数，管理多个参数组实现不同学习率，调整学习率。
+  * 迭代训练：组织上面 4 个模块进行反复训练。包括观察训练效果，绘制 Loss/ Accuracy 曲线，用 TensorBoard 进行可视化分析。
+
+```python
+import torch
+import torch.nn as nn
+import matplotlib.pyplot as plt
+import numpy as np
+torch.manual_seed(10)
+
+# ============================ step 1/5 生成数据 ============================
+sample_nums = 100
+mean_value = 1.7
+bias = 1
+n_data = torch.ones(sample_nums, 2)
+# 使用正态分布随机生成样本，均值为张量，方差为标量
+x0 = torch.normal(mean_value * n_data, 1) + bias      # 类别0 数据 shape=(100, 2)
+# 生成对应标签
+y0 = torch.zeros(sample_nums)                         # 类别0 标签 shape=(100, 1)
+# 使用正态分布随机生成样本，均值为张量，方差为标量
+x1 = torch.normal(-mean_value * n_data, 1) + bias     # 类别1 数据 shape=(100, 2)
+# 生成对应标签
+y1 = torch.ones(sample_nums)                          # 类别1 标签 shape=(100, 1)
+train_x = torch.cat((x0, x1), 0)
+train_y = torch.cat((y0, y1), 0)
+
+# ============================ step 2/5 选择模型 ============================
+class LR(nn.Module):
+    def __init__(self):
+        super(LR, self).__init__()
+        self.features = nn.Linear(2, 1)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        x = self.features(x)
+        x = self.sigmoid(x)
+        return x
+
+lr_net = LR()   # 实例化逻辑回归模型
+
+# ============================ step 3/5 选择损失函数 ============================
+loss_fn = nn.BCELoss()
+
+# ============================ step 4/5 选择优化器   ============================
+lr = 0.01  # 学习率
+optimizer = torch.optim.SGD(lr_net.parameters(), lr=lr, momentum=0.9)
+
+# ============================ step 5/5 模型训练 ============================
+for iteration in range(1000):
+
+    # 前向传播
+    y_pred = lr_net(train_x)
+    # 计算 loss
+    loss = loss_fn(y_pred.squeeze(), train_y)
+    # 反向传播
+    loss.backward()
+    # 更新参数
+    optimizer.step()
+    # 清空梯度
+    optimizer.zero_grad()
+    # 绘图
+    if iteration % 20 == 0:
+        mask = y_pred.ge(0.5).float().squeeze()  # 以0.5为阈值进行分类
+        correct = (mask == train_y).sum()  # 计算正确预测的样本个数
+        acc = correct.item() / train_y.size(0)  # 计算分类准确率
+
+        plt.scatter(x0.data.numpy()[:, 0], x0.data.numpy()[:, 1], c='r', label='class 0')
+        plt.scatter(x1.data.numpy()[:, 0], x1.data.numpy()[:, 1], c='b', label='class 1')
+
+        w0, w1 = lr_net.features.weight[0]
+        w0, w1 = float(w0.item()), float(w1.item())
+        plot_b = float(lr_net.features.bias[0].item())
+        plot_x = np.arange(-6, 6, 0.1)
+        plot_y = (-w0 * plot_x - plot_b) / w1
+
+        plt.xlim(-5, 7)
+        plt.ylim(-7, 7)
+        plt.plot(plot_x, plot_y)
+
+        plt.text(-5, 5, 'Loss=%.4f' % loss.data.numpy(), fontdict={'size': 20, 'color': 'red'})
+        plt.title("Iteration: {}\nw0:{:.2f} w1:{:.2f} b: {:.2f} accuracy:{:.2%}".format(iteration, w0, w1, plot_b, acc))
+        plt.legend()
+        # plt.savefig(str(iteration / 20)+".png")
+        plt.show()
+        plt.pause(0.5)
+        # 如果准确率大于 99%，则停止训练
+        if acc > 0.99:
+            break
+```
+
+
+
+# 7.DataLoader 与 DataSet
+
+## 1.torch.utils.data.DataLoader()
+
+* torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, sampler=None, batch_sampler=None, num_workers=0, collate_fn=None, pin_memory=False, drop_last=False, timeout=0, worker_init_fn=None, multiprocessing_context=None)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105743922.png" alt="image-20220128105743922" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105813849.png" alt="image-20220128105813849" style="zoom:80%;" />
+
+## 2.torch.utils.data.Dataset
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105845383.png" alt="image-20220128105845383" style="zoom:80%;" />
+
+### 示例
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128105920763.png" alt="image-20220128105920763" style="zoom:80%;" />
+
+实现读取数据的 Dataset，编写一个`get_img_info()`方法，读取每一个图片的路径和对应的标签，组成一个元组，再把所有的元组作为 list 存放到`self.data_info`变量中，这里需要注意的是标签需要映射到 0 开始的整数: `rmb_label = {"1": 0, "100": 1}`。
+
+```python
+    @staticmethod
+    def get_img_info(data_dir):
+        data_info = list()
+        # data_dir 是训练集、验证集或者测试集的路径
+        for root, dirs, _ in os.walk(data_dir):
+            # 遍历类别
+            # dirs ['1', '100']
+            for sub_dir in dirs:
+                # 文件列表
+                img_names = os.listdir(os.path.join(root, sub_dir))
+                # 取出 jpg 结尾的文件
+                img_names = list(filter(lambda x: x.endswith('.jpg'), img_names))
+                # 遍历图片
+                for i in range(len(img_names)):
+                    img_name = img_names[i]
+                    # 图片的绝对路径
+                    path_img = os.path.join(root, sub_dir, img_name)
+                    # 标签，这里需要映射为 0、1 两个类别
+                    label = rmb_label[sub_dir]
+                    # 保存在 data_info 变量中
+                    data_info.append((path_img, int(label)))
+        return data_info
+```
+
+然后在`Dataset` 的初始化函数中调用`get_img_info()`方法。
+
+```python
+    def __init__(self, data_dir, transform=None):
+        """
+        rmb面额分类任务的Dataset
+        :param data_dir: str, 数据集所在路径
+        :param transform: torch.transform，数据预处理
+        """
+        # data_info存储所有图片路径和标签，在DataLoader中通过index读取样本
+        self.data_info = self.get_img_info(data_dir)
+        self.transform = transform
+```
+
+然后在`__getitem__()`方法中根据`index` 读取`self.data_info`中路径对应的数据，并在这里做 transform 操作，返回的是样本和标签。
+
+```python
+    def __getitem__(self, index):
+        # 通过 index 读取样本
+        path_img, label = self.data_info[index]
+        # 注意这里需要 convert('RGB')
+        img = Image.open(path_img).convert('RGB')     # 0~255
+        if self.transform is not None:
+            img = self.transform(img)   # 在这里做transform，转为tensor等等
+        # 返回是样本和标签
+        return img, label
+```
+
+在`__len__()`方法中返回`self.data_info`的长度，即为所有样本的数量。
+
+```python
+    # 返回所有样本的数量
+    def __len__(self):
+        return len(self.data_info)
+```
+
+在`train_lenet.py`中，分 5 步构建模型。
+
+第 1 步设置数据。首先定义训练集、验证集、测试集的路径，定义训练集和测试集的`transforms`。然后构建训练集和验证集的`RMBDataset`对象，把对应的路径和`transforms`传进去。再构建`DataLoder`，设置 batch_size，其中训练集设置`shuffle=True`，表示每个 Epoch 都打乱样本。
+
+```python
+# 构建MyDataset实例
+train_data = RMBDataset(data_dir=train_dir, transform=train_transform)
+valid_data = RMBDataset(data_dir=valid_dir, transform=valid_transform)
+
+# 构建DataLoder
+# 其中训练集设置 shuffle=True，表示每个 Epoch 都打乱样本
+train_loader = DataLoader(dataset=train_data, batch_size=BATCH_SIZE, shuffle=True)
+valid_loader = DataLoader(dataset=valid_data, batch_size=BATCH_SIZE)
+```
+
+第 2 步构建模型，这里采用经典的 Lenet 图片分类网络。
+
+```python
+net = LeNet(classes=2)
+net.initialize_weights()
+```
+
+第 3 步设置损失函数，这里使用交叉熵损失函数。
+
+```python
+criterion = nn.CrossEntropyLoss()
+```
+
+第 4 步设置优化器。这里采用 SGD 优化器。
+
+```python
+optimizer = optim.SGD(net.parameters(), lr=LR, momentum=0.9)                        # 选择优化器
+scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)     # 设置学习率下降策略
+```
+
+第 5 步迭代训练模型，在每一个 epoch 里面，需要遍历 train_loader 取出数据，每次取得数据是一个 batchsize 大小。这里又分为 4 步。第 1 步进行前向传播，第 2 步进行反向传播求导，第 3 步使用`optimizer`更新权重，第 4 步统计训练情况。每一个 epoch 完成时都需要使用`scheduler`更新学习率，和计算验证集的准确率、loss。
+
+```python
+for epoch in range(MAX_EPOCH):
+
+    loss_mean = 0.
+    correct = 0.
+    total = 0.
+
+    net.train()
+    # 遍历 train_loader 取数据
+    for i, data in enumerate(train_loader):
+
+        # forward
+        inputs, labels = data
+        outputs = net(inputs)
+
+        # backward
+        optimizer.zero_grad()
+        loss = criterion(outputs, labels)
+        loss.backward()
+
+        # update weights
+        optimizer.step()
+
+        # 统计分类情况
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).squeeze().sum().numpy()
+
+        # 打印训练信息
+        loss_mean += loss.item()
+        train_curve.append(loss.item())
+        if (i+1) % log_interval == 0:
+            loss_mean = loss_mean / log_interval
+            print("Training:Epoch[{:0>3}/{:0>3}] Iteration[{:0>3}/{:0>3}] Loss: {:.4f} Acc:{:.2%}".format(
+                epoch, MAX_EPOCH, i+1, len(train_loader), loss_mean, correct / total))
+            loss_mean = 0.
+
+    scheduler.step()  # 更新学习率
+    # 每个 epoch 计算验证集得准确率和loss
+    ...
+    ...
+```
+
+# 8.**图片预处理 transforms 模块机制**
+
+## 1.常见处理方法
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110347867.png" alt="image-20220128110347867" style="zoom:80%;" />
+
+* 当我们需要多个`transforms`操作时，需要作为一个`list`放在`transforms.Compose`中。需要注意的是`transforms.ToTensor()`是把图片转换为张量，同时进行归一化操作，把每个通道 0~255 的值归一化为 0~1。在验证集的数据增强中，不再需要`transforms.RandomCrop()`操作。然后把这两个`transform`操作作为参数传给`Dataset`，在`Dataset`的`__getitem__()`方法中做图像增强。
+
+```python
+# 设置训练集的数据增强和转化
+train_transform = transforms.Compose([
+    transforms.Resize((32, 32)),# 缩放
+    transforms.RandomCrop(32, padding=4), #裁剪
+    transforms.ToTensor(), # 转为张量，同时归一化
+    transforms.Normalize(norm_mean, norm_std),# 标准化
+])
+
+# 设置验证集的数据增强和转化，不需要 RandomCrop
+valid_transform = transforms.Compose([
+    transforms.Resize((32, 32)),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+def __getitem__(self, index):
+    # 通过 index 读取样本
+    path_img, label = self.data_info[index]
+    # 注意这里需要 convert('RGB')
+    img = Image.open(path_img).convert('RGB')     # 0~255
+    if self.transform is not None:
+        img = self.transform(img)   # 在这里做transform，转为tensor等等
+    # 返回是样本和标签
+    return img, label
+```
+
+## 2.transforms.Normalize
+
+* torchvision.transforms.Normalize(mean, std, inplace=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110648728.png" alt="image-20220128110648728" style="zoom:80%;" />
+
+# 9.**二十二种 transforms 图片数据预处理方法**
+
+## 1.裁剪
+
+* torchvision.transforms.CenterCrop(size)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110752072.png" alt="image-20220128110752072" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110802644.png" alt="image-20220128110802644" style="zoom:80%;" />
+
+* torchvision.transforms.RandomCrop(size, padding=None, pad_if_needed=False, fill=0, padding_mode='constant')
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110858730.png" alt="image-20220128110858730" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110914253.png" alt="image-20220128110914253" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110922038.png" alt="image-20220128110922038" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110930067.png" alt="image-20220128110930067" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110941274.png" alt="image-20220128110941274" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110949763.png" alt="image-20220128110949763" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128110957391.png" alt="image-20220128110957391" style="zoom:80%;" />
+
+* torchvision.transforms.RandomResizedCrop(size, scale=(0.08, 1.0), ratio=(0.75, 1.3333333333333333), interpolation=2)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111100481.png" alt="image-20220128111100481" style="zoom:80%;" />
+
+* torchvision.transforms.FiveCrop(size)
+  torchvision.transforms.TenCrop(size, vertical_flip=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111408739.png" alt="image-20220128111408739" style="zoom:80%;" />
+
+## 2.旋转和翻转
+
+* ## transforms.RandomHorizontalFlip(RandomVerticalFlip)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111552599.png" alt="image-20220128111552599" style="zoom:80%;" />
+
+`transforms.RandomVerticalFlip(p=1)`，垂直翻转
+
+* torchvision.transforms.RandomRotation(degrees, resample=False, expand=False, center=None, fill=None)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111633030.png" alt="image-20220128111633030" style="zoom:80%;" />
+
+## 3.图像变换
+
+* torchvision.transforms.Pad(padding, fill=0, padding_mode='constant')
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111731861.png" alt="image-20220128111731861" style="zoom:80%;" />
+
+* torchvision.transforms.ColorJitter(brightness=0, contrast=0, saturation=0, hue=0)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111808453.png" alt="image-20220128111808453" style="zoom:80%;" />
+
+* torchvision.transforms.Grayscale(num_output_channels=1)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111845592.png" alt="image-20220128111845592" style="zoom:80%;" />
+
+* torchvision.transforms.RandomGrayscale(p=0.1, num_output_channels=1)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111913216.png" alt="image-20220128111913216" style="zoom:80%;" />
+
+* torchvision.transforms.RandomAffine(degrees, translate=None, scale=None, shear=None, resample=False, fillcolor=0)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128111944687.png" alt="image-20220128111944687" style="zoom:80%;" />
+
+* torchvision.transforms.RandomErasing(p=0.5, scale=(0.02, 0.33), ratio=(0.3, 3.3), value=0, inplace=False)
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128112027984.png" alt="image-20220128112027984" style="zoom:80%;" />
+
+## 4.transforms 的操作
+
+* torchvision.transforms.RandomChoice([transforms1, transforms2, transforms3])
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128112135148.png" alt="image-20220128112135148" style="zoom:80%;" />
+
+* torchvision.transforms.RandomApply([transforms1, transforms2, transforms3], p=0.5)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128112154049.png" alt="image-20220128112154049" style="zoom:80%;" />
+
+* transforms.RandomOrder([transforms1, transforms2, transforms3])
+
+  <img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128112210799.png" alt="image-20220128112210799" style="zoom:80%;" />
+
+## 5.自定义transforms
+
+自定义 transforms 有两个要素：仅接受一个参数，返回一个参数；注意上下游的输入与输出，上一个 transform 的输出是下一个 transform 的输入。
+
+我们这里通过自定义 transforms 实现椒盐噪声。椒盐噪声又称为脉冲噪声，是一种随机出现的白点或者黑点，白点称为盐噪声，黑点称为椒噪声。信噪比 (Signal-Noise Rate，SNR) 是衡量噪声的比例，图像中正常像素占全部像素的占比。
+
+我们定义一个`AddPepperNoise`类，作为添加椒盐噪声的 transform。在构造函数中传入信噪比和概率，在`__call__()`函数中执行具体的逻辑，返回的是 image。
+
+```python
+import numpy as np
+import random
+from PIL import Image
+
+# 自定义添加椒盐噪声的 transform
+class AddPepperNoise(object):
+    """增加椒盐噪声
+    Args:
+        snr （float）: Signal Noise Rate
+        p (float): 概率值，依概率执行该操作
+    """
+
+    def __init__(self, snr, p=0.9):
+        assert isinstance(snr, float) or (isinstance(p, float))
+        self.snr = snr
+        self.p = p
+
+    # transform 会调用该方法
+    def __call__(self, img):
+        """
+        Args:
+            img (PIL Image): PIL Image
+        Returns:
+            PIL Image: PIL image.
+        """
+        # 如果随机概率小于 seld.p，则执行 transform
+        if random.uniform(0, 1) < self.p:
+            # 把 image 转为 array
+            img_ = np.array(img).copy()
+            # 获得 shape
+            h, w, c = img_.shape
+            # 信噪比
+            signal_pct = self.snr
+            # 椒盐噪声的比例 = 1 -信噪比
+            noise_pct = (1 - self.snr)
+            # 选择的值为 (0, 1, 2)，每个取值的概率分别为 [signal_pct, noise_pct/2., noise_pct/2.]
+            # 椒噪声和盐噪声分别占 noise_pct 的一半
+            # 1 为盐噪声，2 为 椒噪声
+            mask = np.random.choice((0, 1, 2), size=(h, w, 1), p=[signal_pct, noise_pct/2., noise_pct/2.])
+            mask = np.repeat(mask, c, axis=2)
+            img_[mask == 1] = 255   # 盐噪声
+            img_[mask == 2] = 0     # 椒噪声
+            # 再转换为 image
+            return Image.fromarray(img_.astype('uint8')).convert('RGB')
+        # 如果随机概率大于 seld.p，则直接返回原图
+        else:
+            return img
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128112444134.png" alt="image-20220128112444134" style="zoom:80%;" />
+
+完整代码：
+
+```python
+# -*- coding: utf-8 -*-
+
+import os
+import numpy as np
+import torch
+import random
+import math
+import torchvision.transforms as transforms
+from PIL import Image
+from matplotlib import pyplot as plt
+from enviroments import rmb_split_dir
+from lesson2.transforms.addPepperNoise import AddPepperNoise
+def set_seed(seed=1):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+
+set_seed(1)  # 设置随机种子
+
+# 参数设置
+MAX_EPOCH = 10
+BATCH_SIZE = 1
+LR = 0.01
+log_interval = 10
+val_interval = 1
+rmb_label = {"1": 0, "100": 1}
+
+#对 tensor 进行反标准化操作，并且把 tensor 转换为 image，方便可视化。
+def transform_invert(img_, transform_train):
+    """
+    将data 进行反transfrom操作
+    :param img_: tensor
+    :param transform_train: torchvision.transforms
+    :return: PIL image
+    """
+
+    # 如果有标准化操作
+    if 'Normalize' in str(transform_train):
+        # 取出标准化的 transform
+        norm_transform = list(filter(lambda x: isinstance(x, transforms.Normalize), transform_train.transforms))
+        # 取出均值
+        mean = torch.tensor(norm_transform[0].mean, dtype=img_.dtype, device=img_.device)
+        # 取出标准差
+        std = torch.tensor(norm_transform[0].std, dtype=img_.dtype, device=img_.device)
+        # 乘以标准差，加上均值
+        img_.mul_(std[:, None, None]).add_(mean[:, None, None])
+
+    # 把 C*H*W 变为 H*W*C
+    img_ = img_.transpose(0, 2).transpose(0, 1)  # C*H*W --> H*W*C
+    # 把 0~1 的值变为 0~255
+    img_ = np.array(img_) * 255
+
+    # 如果是 RGB 图
+    if img_.shape[2] == 3:
+        img_ = Image.fromarray(img_.astype('uint8')).convert('RGB')
+        # 如果是灰度图
+    elif img_.shape[2] == 1:
+        img_ = Image.fromarray(img_.astype('uint8').squeeze())
+    else:
+        raise Exception("Invalid img shape, expected 1 or 3 in axis 2, but got {}!".format(img_.shape[2]) )
+
+    return img_
+
+
+norm_mean = [0.485, 0.456, 0.406]
+norm_std = [0.229, 0.224, 0.225]
+
+train_transform = transforms.Compose([
+    # 缩放到 (224, 224) 大小，会拉伸
+    transforms.Resize((224, 224)),
+
+    # 1 CenterCrop 中心裁剪
+    # transforms.CenterCrop(512),     # 512
+    # transforms.CenterCrop(196),     # 512
+
+    # 2 RandomCrop
+    # transforms.RandomCrop(224, padding=16),
+    # transforms.RandomCrop(224, padding=(16, 64)),
+    # transforms.RandomCrop(224, padding=16, fill=(255, 0, 0)),
+    # transforms.RandomCrop(512, pad_if_needed=True),   # pad_if_needed=True
+    # transforms.RandomCrop(224, padding=64, padding_mode='edge'),
+    # transforms.RandomCrop(224, padding=64, padding_mode='reflect'),
+    # transforms.RandomCrop(1024, padding=1024, padding_mode='symmetric'),
+
+    # 3 RandomResizedCrop
+    # transforms.RandomResizedCrop(size=224, scale=(0.08, 1)),
+    # transforms.RandomResizedCrop(size=224, scale=(0.5, 0.5)),
+
+    # 4 FiveCrop
+    # transforms.FiveCrop(112),
+    # 返回的是 tuple，因此需要转换为 tensor
+    # transforms.Lambda(lambda crops: torch.stack([(transforms.ToTensor()(crop)) for crop in crops])),
+
+    # 5 TenCrop
+    # transforms.TenCrop(112, vertical_flip=False),
+    # transforms.Lambda(lambda crops: torch.stack([(transforms.ToTensor()(crop)) for crop in crops])),
+
+    # 1 Horizontal Flip
+    # transforms.RandomHorizontalFlip(p=1),
+
+    # 2 Vertical Flip
+    # transforms.RandomVerticalFlip(p=1),
+
+    # 3 RandomRotation
+    # transforms.RandomRotation(90),
+    # transforms.RandomRotation((90), expand=True),
+    # transforms.RandomRotation(30, center=(0, 0)),
+    # transforms.RandomRotation(30, center=(0, 0), expand=True),   # expand only for center rotation
+
+
+    # 1 Pad
+    # transforms.Pad(padding=32, fill=(255, 0, 0), padding_mode='constant'),
+    # transforms.Pad(padding=(8, 64), fill=(255, 0, 0), padding_mode='constant'),
+    # transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode='constant'),
+    # transforms.Pad(padding=(8, 16, 32, 64), fill=(255, 0, 0), padding_mode='symmetric'),
+
+    # 2 ColorJitter
+    # transforms.ColorJitter(brightness=0.5),
+    # transforms.ColorJitter(contrast=0.5),
+    # transforms.ColorJitter(saturation=0.5),
+    # transforms.ColorJitter(hue=0.3),
+
+    # 3 Grayscale
+    # transforms.Grayscale(num_output_channels=3),
+
+    # 4 Affine
+    # transforms.RandomAffine(degrees=30),
+    # transforms.RandomAffine(degrees=0, translate=(0.2, 0.2), fillcolor=(255, 0, 0)),
+    # transforms.RandomAffine(degrees=0, scale=(0.7, 0.7)),
+    # transforms.RandomAffine(degrees=0, shear=(0, 0, 0, 45)),
+    # transforms.RandomAffine(degrees=0, shear=90, fillcolor=(255, 0, 0)),
+
+    # 5 Erasing
+    # transforms.ToTensor(),
+    # transforms.RandomErasing(p=1, scale=(0.02, 0.33), ratio=(0.3, 3.3), value=(254/255, 0, 0)),
+    # transforms.RandomErasing(p=1, scale=(0.02, 0.33), ratio=(0.3, 3.3), value='fads43'),
+
+    # 1 RandomChoice
+    # transforms.RandomChoice([transforms.RandomVerticalFlip(p=1), transforms.RandomHorizontalFlip(p=1)]),
+
+    # 2 RandomApply
+    # transforms.RandomApply([transforms.RandomAffine(degrees=0, shear=45, fillcolor=(255, 0, 0)),
+    #                         transforms.Grayscale(num_output_channels=3)], p=0.5),
+    # 3 RandomOrder
+    # transforms.RandomOrder([transforms.RandomRotation(15),
+    #                         transforms.Pad(padding=32),
+    #                         transforms.RandomAffine(degrees=0, translate=(0.01, 0.1), scale=(0.9, 1.1))]),
+
+    AddPepperNoise(0.9, p=0.5),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+path_img=os.path.join(rmb_split_dir, "train", "100","0A4DSPGE.jpg")
+img = Image.open(path_img).convert('RGB')  # 0~255
+img=transforms.Resize((224, 224))(img)
+img_tensor = train_transform(img)
+
+
+
+## 展示单张图片
+# 这里把转换后的 tensor 再转换为图片
+convert_img=transform_invert(img_tensor, train_transform)
+plt.subplot(1, 2, 1)
+plt.imshow(img)
+plt.subplot(1, 2, 2)
+plt.imshow(convert_img)
+plt.show()
+plt.pause(0.5)
+plt.close()
+
+
+## 展示 FiveCrop 和 TenCrop 的图片
+# ncrops, c, h, w = img_tensor.shape
+# columns=2 # 两列
+# rows= math.ceil(ncrops/2) # 计算多少行
+# # 把每个 tensor ([c,h,w]) 转换为 image
+# for i in range(ncrops):
+#     img = transform_invert(img_tensor[i], train_transform)
+#     plt.subplot(rows, columns, i+1)
+#     plt.imshow(img)
+# plt.show()
+```
+
+
+
+# 10.模型创建步骤与 nn.Module
+
+![img](https://image.zhangxiann.com/20200614105228.png)
+
+## 1.网络模型的创建步骤
+
+创建模型有 2 个要素：**构建子模块**和**拼接子模块**。如 LeNet 里包含很多卷积层、池化层、全连接层，当我们构建好所有的子模块之后，按照一定的顺序拼接起来。
+
+![img](https://image.zhangxiann.com/20200614110803.png) 
+
+这里以上一篇文章中 `lenet.py`的 LeNet 为例，继承`nn.Module`，必须实现`__init__()` 方法和`forward()`方法。其中`__init__()` 方法里创建子模块，在`forward()`方法里拼接子模块。
+
+```python
+class LeNet(nn.Module):
+    # 子模块创建
+    def __init__(self, classes):
+        super(LeNet, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(16*5*5, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, classes)
+    # 子模块拼接
+    def forward(self, x):
+        out = F.relu(self.conv1(x))
+        out = F.max_pool2d(out, 2)
+        out = F.relu(self.conv2(out))
+        out = F.max_pool2d(out, 2)
+        out = out.view(out.size(0), -1)
+        out = F.relu(self.fc1(out))
+        out = F.relu(self.fc2(out))
+        out = self.fc3(out)
+        return out
+```
+
+当我们调用`net = LeNet(classes=2)`创建模型时，会调用`__init__()`方法创建模型的子模块。
+
+## 2.nn.Module
+
+![img](https://image.zhangxiann.com/20200614114315.png)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128143508223.png" alt="image-20220128143508223" style="zoom:80%;" />
+
+## 3.模型容器
+
+除了上述的模块之外，还有一个重要的概念是模型容器 (Containers)，常用的容器有 3 个，这些容器都是继承自`nn.Module`。
+
+* nn.Sequetial：按照顺序包装多个网络层
+* nn.ModuleList：像 python 的 list 一样包装多个网络层，可以迭代
+* nn.ModuleDict：像 python 的 dict一样包装多个网络层，通过 (key, value) 的方式为每个网络层指定名称。
+
+### 1.nn.Sequetial
+
+在传统的机器学习中，有一个步骤是特征工程，我们需要从数据中认为地提取特征，然后把特征输入到分类器中预测。在深度学习的时代，特征工程的概念被弱化了，特征提取和分类器这两步被融合到了一个神经网络中。在卷积神经网络中，前面的卷积层以及池化层可以认为是特征提取部分，而后面的全连接层可以认为是分类器部分。比如 LeNet 就可以分为**特征提取**和**分类器**两部分，这 2 部分都可以分别使用 `nn.Seuqtial` 来包装。
+
+<img src="https://image.zhangxiann.com/20200614142014.png" alt="img" style="zoom:80%;" />
+
+```python
+class LeNetSequetial(nn.Module):
+    def __init__(self, classes):
+        super(LeNet2, self).__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(3, 6, 5),
+            nn.ReLU(),
+            nn.AvgPool2d(2, 2),
+            nn.Conv2d(6, 16, 5),
+            nn.ReLU(),
+            nn.AvgPool2d(2, 2)
+        )
+        self.classifier = nn.Sequential(
+            nn.Linear(16*5*5, 120),
+            nn.ReLU(),
+            nn.Linear(120, 84),
+            nn.ReLU(),
+            nn.Linear(84, classes)
+        )
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size()[0], -1)
+        x = self.classifier(x)
+        return x
+```
+
+一旦网络层增多，难以查找特定的网络层，这种情况可以使用 OrderDict (有序字典)。代码中使用
+
+```python
+class LeNetSequentialOrderDict(nn.Module):
+    def __init__(self, classes):
+        super(LeNetSequentialOrderDict, self).__init__()
+
+        self.features = nn.Sequential(OrderedDict({
+            'conv1': nn.Conv2d(3, 6, 5),
+            'relu1': nn.ReLU(inplace=True),
+            'pool1': nn.MaxPool2d(kernel_size=2, stride=2),
+
+            'conv2': nn.Conv2d(6, 16, 5),
+            'relu2': nn.ReLU(inplace=True),
+            'pool2': nn.MaxPool2d(kernel_size=2, stride=2),
+        }))
+
+        self.classifier = nn.Sequential(OrderedDict({
+            'fc1': nn.Linear(16*5*5, 120),
+            'relu3': nn.ReLU(),
+
+            'fc2': nn.Linear(120, 84),
+            'relu4': nn.ReLU(inplace=True),
+
+            'fc3': nn.Linear(84, classes),
+        }))
+        ...
+        ...
+        ...
+```
+
+### 2.nn.ModuleList
+
+`nn.ModuleList`是`nn.Module`的容器，用于包装一组网络层，以迭代的方式调用网络层，主要有以下 3 个方法：
+
+- append()：在 ModuleList 后面添加网络层
+- extend()：拼接两个 ModuleList
+- insert()：在 ModuleList 的指定位置中插入网络层
+
+下面的代码通过列表生成式来循环迭代创建 20 个全连接层，非常方便，只是在 `forward()`函数中需要手动调用每个网络层。
+
+```python
+class ModuleList(nn.Module):
+    def __init__(self):
+        super(ModuleList, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(10, 10) for i in range(20)])
+
+    def forward(self, x):
+        for i, linear in enumerate(self.linears):
+            x = linear(x)
+        return x
+
+
+net = ModuleList()
+
+print(net)
+
+fake_data = torch.ones((10, 10))
+
+output = net(fake_data)
+
+print(output)
+```
+
+### 3.nn.ModuleDict
+
+`nn.ModuleDict`是`nn.Module`的容器，用于包装一组网络层，以索引的方式调用网络层，主要有以下 5 个方法：
+
+- clear()：清空  ModuleDict
+- items()：返回可迭代的键值对 (key, value)
+- keys()：返回字典的所有 key
+- values()：返回字典的所有 value
+- pop()：返回一对键值，并从字典中删除
+
+下面的模型创建了两个`ModuleDict`：`self.choices`和`self.activations`，在前向传播时通过传入对应的 key 来执行对应的网络层。
+
+```python
+class ModuleDict(nn.Module):
+    def __init__(self):
+        super(ModuleDict, self).__init__()
+        self.choices = nn.ModuleDict({
+            'conv': nn.Conv2d(10, 10, 3),
+            'pool': nn.MaxPool2d(3)
+        })
+
+        self.activations = nn.ModuleDict({
+            'relu': nn.ReLU(),
+            'prelu': nn.PReLU()
+        })
+
+    def forward(self, x, choice, act):
+        x = self.choices[choice](x)
+        x = self.activations[act](x)
+        return x
+
+
+net = ModuleDict()
+
+fake_img = torch.randn((4, 10, 32, 32))
+
+output = net(fake_img, 'conv', 'relu')
+# output = net(fake_img, 'conv', 'prelu')
+print(output)
+```
+
+# 11.卷积层
+
+## 1D/2D/3D 卷积
+
+![img](https://image.zhangxiann.com/1d.gif)
+
+![img](https://image.zhangxiann.com/2d-conv-2.gif)
+
+![img](https://image.zhangxiann.com/3d.gif)
+
+## 二维卷积：nn.Conv2d()
+
+nn.Conv2d(self, in_channels, out_channels, kernel_size, stride=1,padding=0, dilation=1, groups=1,bias=True, padding_mode='zeros')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128150257247.png" alt="image-20220128150257247" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128150326217.png" alt="image-20220128150326217" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128150336194.png" alt="image-20220128150336194" style="zoom:80%;" />
+
+## 转置卷积：nn.ConvTranspose()
+
+转置卷积又称为反卷积 (Deconvolution) 和部分跨越卷积 (Fractionally strided Convolution)，用于对图像进行上采样。正常卷积如下：
+
+![img](https://pic3.zhimg.com/v2-705305fee5a050575544c64067405fce_b.webp)
+
+原始的图片尺寸为 ![[公式]](https://www.zhihu.com/equation?tex=4+%5Ctimes+4)，卷积核大小为 ![[公式]](https://www.zhihu.com/equation?tex=3+%5Ctimes+3)，![[公式]](https://www.zhihu.com/equation?tex=padding+%3D0)，![[公式]](https://www.zhihu.com/equation?tex=stride+%3D+1)。由于卷积操作可以通过矩阵运算来解决，因此原始图片可以看作 ![[公式]](https://www.zhihu.com/equation?tex=16+%5Ctimes+1) 的矩阵 ![[公式]](https://www.zhihu.com/equation?tex=I_%7B16+%5Ctimes+1%7D)，卷积核可以看作 ![[公式]](https://www.zhihu.com/equation?tex=4+%5Ctimes+16) 的矩阵 ![[公式]](https://www.zhihu.com/equation?tex=K_%7B4+%5Ctimes+16%7D)，那么输出是 ![[公式]](https://www.zhihu.com/equation?tex=K_%7B4+%5Ctimes+16%7D+%5Ctimes+I_%7B16+%5Ctimes+1%7D+%3D+O_%7B4+%5Ctimes+1%7D) 。
+
+转置卷积如下：
+
+![img](https://pic4.zhimg.com/v2-286ac2cfb69abf4d8aa06b8eeb39ced3_b.webp)
+
+原始的图片尺寸为 ![[公式]](https://www.zhihu.com/equation?tex=2+%5Ctimes+2)，卷积核大小为 ![[公式]](https://www.zhihu.com/equation?tex=3+%5Ctimes+3)，![[公式]](https://www.zhihu.com/equation?tex=padding+%3D0)，![[公式]](https://www.zhihu.com/equation?tex=stride+%3D+1)。由于卷积操作可以通过矩阵运算来解决，因此原始图片可以看作 ![[公式]](https://www.zhihu.com/equation?tex=4+%5Ctimes+1) 的矩阵 ![[公式]](https://www.zhihu.com/equation?tex=I_%7B4+%5Ctimes+1%7D)，卷积核可以看作 ![[公式]](https://www.zhihu.com/equation?tex=4+%5Ctimes+16) 的矩阵 ![[公式]](https://www.zhihu.com/equation?tex=K_%7B16+%5Ctimes+4%7D)，那么输出是 ![[公式]](https://www.zhihu.com/equation?tex=K_%7B16+%5Ctimes+4%7D+%5Ctimes+I_%7B4+%5Ctimes+1%7D+%3D+O_%7B16+%5Ctimes+1%7D) 。
+
+正常卷积核转置卷积矩阵的形状刚好是转置关系，因此称为转置卷积，但里面的权值不是一样的，卷积操作也是不可逆的。
+
+PyTorch 中的转置卷积函数如下：
+
+```python
+nn.ConvTranspose2d(self, in_channels, out_channels, kernel_size, stride=1,
+                 padding=0, output_padding=0, groups=1, bias=True,
+                 dilation=1, padding_mode='zeros')
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128150653589.png" alt="image-20220128150653589" style="zoom:80%;" />
+
+# 12.池化层、线性层和激活函数层
+
+##  1.池化层
+
+池化的作用则体现在降采样：保留显著特征、降低特征维度，增大kernel的感受野。 另外一点值得注意：pooling也可以提供一些旋转不变性。 池化层可对提取到的特征信息进行降维，一方面使特征图变小，简化网络计算复杂度并在一定程度上避免过拟合的出现；一方面进行特征压缩，提取主要特征。
+
+有最大池化和平均池化两张方式。
+
+### 最大池化：nn.MaxPool2d()
+
+nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128151048038.png" alt="image-20220128151048038" style="zoom:80%;" />
+
+<img src="https://image.zhangxiann.com/20200629114927.png" alt="img" style="zoom:80%;" />
+
+### 平均池化
+
+torch.nn.AvgPool2d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True, divisor_override=None)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128151251471.png" alt="image-20220128151251471" style="zoom:80%;" />
+
+### 最大反池化
+
+nn.MaxUnpool2d(kernel_size, stride=None, padding=0)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128151329208.png" alt="image-20220128151329208" style="zoom:80%;" />
+
+## 2.线性层
+
+线性层又称为全连接层，其每个神经元与上一个层所有神经元相连，实现对前一层的线性组合或线性变换。
+
+linear_layer = nn.Linear( )
+
+## 3.激活函数层
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128151651265.png" alt="image-20220128151651265" style="zoom:80%;" />
+
+### 1.nn.Sigmoid
+
+![image-20220128151705151](C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128151705151.png)
+
+<img src="https://pic2.zhimg.com/80/v2-92f08b1ea82087c553dfec9c18d1b3a9_720w.jpg" alt="img" style="zoom:80%;" />
+
+### 2.nn.tanh
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128151739907.png" alt="image-20220128151739907" style="zoom:80%;" />
+
+<img src="https://pic3.zhimg.com/80/v2-1187e5593fcd1c9b3f4deaeeb45d1a0e_720w.jpg" alt="img" style="zoom:80%;" />
+
+### 3.nn.ReLU(修正线性单元)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128151842454.png" alt="image-20220128151842454" style="zoom:80%;" />
+
+<img src="https://pic3.zhimg.com/80/v2-aa6efbe0e0fd4900cb60d9df516986ca_720w.jpg" alt="img" style="zoom:80%;" />
+
+针对 RuLU 会导致死神经元的缺点，出现了下面 3 种改进的激活函数。
+
+<img src="https://pic2.zhimg.com/80/v2-db7a355164c103d8af93fb6dffee259d_720w.jpg" alt="img" style="zoom:80%;" />
+
+#### nn.LeakyReLU
+
+* 有一个参数`negative_slope`：设置负半轴斜率
+
+##### nn.PReLU
+
+- 有一个参数`init`：设置初始斜率，这个斜率是可学习的
+
+##### nn.RReLU
+
+R 是 random 的意思，负半轴每次斜率都是随机取 [lower, upper] 之间的一个数
+
+- lower：均匀分布下限
+- upper：均匀分布上限
+
+# 13.**权值初始化**
+
+## 1.梯度消失与梯度爆炸
+
+考虑一个 3 层的全连接网络。
+
+![[公式]](https://www.zhihu.com/equation?tex=H_%7B1%7D%3DX+%5Ctimes+W_%7B1%7D)，![[公式]](https://www.zhihu.com/equation?tex=H_%7B2%7D%3DH_%7B1%7D+%5Ctimes+W_%7B2%7D)，![[公式]](https://www.zhihu.com/equation?tex=Out%3DH_%7B2%7D+%5Ctimes+W_%7B3%7D)
+
+<img src="https://pic3.zhimg.com/80/v2-bd64028adc3d3efd6e7df4ebdfc5b51a_720w.jpg" alt="img" style="zoom:80%;" />
+
+其中第 2 层的权重梯度如下：
+
+![[公式]](https://www.zhihu.com/equation?tex=%5Cbegin%7Baligned%7D+%5CDelta+%5Cmathrm%7BW%7D_%7B2%7D+%26%3D%5Cfrac%7B%5Cpartial+%5Cmathrm%7BLoss%7D%7D%7B%5Cpartial+%5Cmathrm%7BW%7D_%7B2%7D%7D%3D%5Cfrac%7B%5Cpartial+%5Cmathrm%7BLoss%7D%7D%7B%5Cpartial+%5Cmathrm%7Bout%7D%7D+%2A+%5Cfrac%7B%5Cpartial+%5Cmathrm%7Bout%7D%7D%7B%5Cpartial+%5Cmathrm%7BH%7D_%7B2%7D%7D+%2A+%5Cfrac%7B%5Cpartial+%5Cmathrm%7BH%7D_%7B2%7D%7D%7B%5Cpartial+%5Cmathrm%7Bw%7D_%7B2%7D%7D+%5C%5C+%26%3D%5Cfrac%7B%5Cpartial+%5Cmathrm%7BLoss%7D%7D%7B%5Cpartial+%5Cmathrm%7Bout%7D%7D+%2A+%5Cfrac%7B%5Cpartial+%5Cmathrm%7Bout%7D%7D%7B%5Cpartial+%5Cmathrm%7BH%7D_%7B2%7D%7D+%2A+%5Cmathrm%7BH%7D_%7B1%7D+%5Cend%7Baligned%7D)
+
+所以 ![[公式]](https://www.zhihu.com/equation?tex=%5CDelta+%5Cmathrm%7BW%7D_%7B2%7D) 依赖于前一层的输出 ![[公式]](https://www.zhihu.com/equation?tex=H_%7B1%7D)。如果 ![[公式]](https://www.zhihu.com/equation?tex=H_%7B1%7D) 趋近于零，那么 ![[公式]](https://www.zhihu.com/equation?tex=%5CDelta+%5Cmathrm%7BW%7D_%7B2%7D) 也接近于 0，造成梯度消失。如果 ![[公式]](https://www.zhihu.com/equation?tex=H_%7B1%7D) 趋近于无穷大，那么 ![[公式]](https://www.zhihu.com/equation?tex=%5CDelta+%5Cmathrm%7BW%7D_%7B2%7D) 也接近于无穷大，造成梯度爆炸。要避免梯度爆炸或者梯度消失，就要严格控制网络层输出的数值范围。
+
+## 2.Xavier 方法与 Kaiming 方法
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128153007286.png" alt="image-20220128153007286" style="zoom:80%;" />
+
+```python
+tanh_gain = nn.init.calculate_gain('tanh')
+nn.init.xavier_uniform_(m.weight.data, gain=tanh_gain)
+```
+
+### nn.init.calculate_gain()
+
+上面的初始化方法都使用了`tanh_gain = nn.init.calculate_gain('tanh')`
+
+```python
+- nonlinearity：激活函数名称
+- param：激活函数的参数，如 Leaky ReLU 的 negative_slop。
+
+下面是计算标准差经过激活函数的变化尺度的代码。
+x = torch.randn(10000) out = torch.tanh(x)
+
+gain = x.std() / out.std() print('gain:{}'.format(gain))
+
+tanh_gain = nn.init.calculate_gain('tanh') print('tanh_gain in PyTorch:', tanh_gain)
+```
+
+gain:1.5982500314712524 tanh_gain in PyTorch: 1.6666666666666667
+
+结果表示，原有数据分布的方差经过 tanh 之后，标准差会变小 1.6倍左右
+
+## 3. Kaiming 方法
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128154201667.png" alt="image-20220128154201667" style="zoom:80%;" />
+
+## 4.常用初始化方法
+
+* Xavier 均匀分布
+* Xavier 正态分布
+* Kaiming 均匀分布
+* Kaiming 正态分布
+* 均匀分布
+* 正态分布
+* 常数分布
+* 正交矩阵初始化
+* 单位矩阵初始化
+* 稀疏矩阵初始化
+
+# 14.损失函数
+
+损失函数是衡量模型输出与真实标签之间的差异。我们还经常听到代价函数和目标函数，它们之间差异如下：
+
+- 损失函数(Loss Function)是计算**一个**样本的模型输出与真实标签的差异
+  Loss ![[公式]](https://www.zhihu.com/equation?tex=%3Df%5Cleft%28y%5E%7B%5Cwedge%7D%2C+y%5Cright%29)
+- 代价函数(Cost Function)是计算整个样本集的模型输出与真实标签的差异，是所有样本损失函数的平均值
+  ![[公式]](https://www.zhihu.com/equation?tex=%5Ccos+t%3D%5Cfrac%7B1%7D%7BN%7D+%5Csum_%7Bi%7D%5E%7BN%7D+f%5Cleft%28y_%7Bi%7D%5E%7B%5Cwedge%7D%2C+y_%7Bi%7D%5Cright%29)
+- 目标函数(Objective Function)就是代价函数加上正则项
+
+在 PyTorch 中的损失函数也是继承于`nn.Module`，所以损失函数也可以看作网络层。
+
+在逻辑回归的实验中，我使用了交叉熵损失函数`loss_fn = nn.BCELoss()`，![[公式]](https://www.zhihu.com/equation?tex=BCELoss) 的继承关系：`nn.BCELoss() -> _WeightedLoss -> _Loss -> Module`。在计算具体的损失时`loss = loss_fn(y_pred.squeeze(), train_y)`，这里实际上在 Loss 中进行一次前向传播，最终调用`BCELoss()`的`forward()`函数`F.binary_cross_entropy(input, target, weight=self.weight, reduction=self.reduction)`。
+
+下面介绍 PyTorch 提供的损失函数。注意在所有的损失函数中，`size_average`和`reduce`参数都不再使用。
+
+## 1.nn.CrossEntropyLoss
+
+nn.CrossEntropyLoss(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155232140.png" alt="image-20220128155232140" style="zoom:80%;" />
+
+## 2.nn.NLLLoss
+
+nn.NLLLoss(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155343903.png" alt="image-20220128155343903" style="zoom:80%;" />
+
+## 3.nn.BCELoss
+
+nn.BCELoss(weight=None, size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155619000.png" alt="image-20220128155619000" style="zoom:80%;" />
+
+## 4.nn.BCEWithLogitsLoss
+
+nn.BCEWithLogitsLoss(weight=None, size_average=None, reduce=None, reduction='mean', pos_weight=None)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155539592.png" alt="image-20220128155539592" style="zoom:80%;" />
+
+## 5.nn.L1Loss
+
+nn.L1Loss(size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155634977.png" alt="image-20220128155634977" style="zoom:80%;" />
+
+## 6.nn.MSELoss
+
+nn.MSELoss(reduction='none')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155701842.png" alt="image-20220128155701842" style="zoom:80%;" />
+
+## 7.nn.SmoothL1Loss
+
+nn.SmoothL1Loss(size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155745324.png" alt="image-20220128155745324" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155820412.png" alt="image-20220128155820412" style="zoom:80%;" />
+
+<img src="https://pic3.zhimg.com/80/v2-59bedd97c18dff6fe2bf9fd96494cac2_720w.jpg" alt="img" style="zoom:80%;" />
+
+
+
+## 8.nn.PoissonNLLLoss
+
+nn.PoissonNLLLoss(log_input=True, full=False, size_average=None, eps=1e-08, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155854467.png" alt="image-20220128155854467" style="zoom:80%;" />
+
+## 9.nn.KLDivLoss
+
+nn.KLDivLoss(size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155925313.png" alt="image-20220128155925313" style="zoom:80%;" />
+
+## 10.nn.MarginRankingLoss
+
+nn.MarginRankingLoss(margin=0.0, size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128155950600.png" alt="image-20220128155950600" style="zoom:80%;" />
+
+## 11.nn.MultiLabelMarginLoss
+
+nn.MultiLabelMarginLoss(size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160019741.png" alt="image-20220128160019741" style="zoom:80%;" />
+
+## 12.nn.SoftMarginLoss
+
+nn.SoftMarginLoss(size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160045328.png" alt="image-20220128160045328" style="zoom:80%;" />
+
+## 13.nn.MultiLabelSoftMarginLoss
+
+nn.MultiLabelSoftMarginLoss(weight=None, size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160121822.png" alt="image-20220128160121822" style="zoom:80%;" />
+
+## 14.nn.MultiMarginLoss
+
+nn.MultiMarginLoss(p=1, margin=1.0, weight=None, size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160149736.png" alt="image-20220128160149736" style="zoom:80%;" />
+
+## 15.nn.TripletMarginLoss
+
+nn.TripletMarginLoss(margin=1.0, p=2.0, eps=1e-06, swap=False, size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160224783.png" alt="image-20220128160224783" style="zoom:80%;" />
+
+## 16.nn.HingeEmbeddingLoss
+
+nn.HingeEmbeddingLoss(margin=1.0, size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160250085.png" alt="image-20220128160250085" style="zoom:80%;" />
+
+## 17.nn.CosineEmbeddingLoss
+
+torch.nn.CosineEmbeddingLoss(margin=0.0, size_average=None, reduce=None, reduction='mean')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160314376.png" alt="image-20220128160314376" style="zoom:80%;" />
+
+## 18.nn.CTCLoss
+
+nn.CTCLoss(blank=0, reduction='mean', zero_infinity=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160347659.png" alt="image-20220128160347659" style="zoom:80%;" />
+
+# 15.优化器
+
+## 1.optimizer 的属性
+
+PyTorch 中提供了 Optimizer 类，定义如下：
+
+```python
+class Optimizer(object):
+    def __init__(self, params, defaults):        
+        self.defaults = defaults
+        self.state = defaultdict(dict)
+        self.param_groups = []
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160546650.png" alt="image-20220128160546650" style="zoom:80%;" />
+
+## 2.optimizer 的方法
+
+* zero_grad()：清空所管理参数的梯度。由于 PyTorch 的特性是张量的梯度不自动清零，因此每次反向传播之后都需要清空梯度。代码如下：
+
+  ```python
+  def zero_grad(self):
+      r"""Clears the gradients of all optimized :class:`torch.Tensor` s."""
+      for group in self.param_groups:
+          for p in group['params']:
+              if p.grad is not None:
+                  p.grad.detach_()
+                  p.grad.zero_()
+  ```
+
+* step()：执行一步梯度更新
+
+* add_param_group()：添加参数组，主要代码如下：
+
+  ```python
+  def add_param_group(self, param_group):
+      params = param_group['params']
+      if isinstance(params, torch.Tensor):
+          param_group['params'] = [params]
+      ...
+      self.param_groups.append(param_group)
+  ```
+
+* state_dict()：获取优化器当前状态信息字典
+
+* load_state_dict()：加载状态信息字典，包括 state 、momentum_buffer 和 param_groups。主要用于模型的断点续训练。我们可以在每隔 50 个 epoch 就保存模型的 state_dict 到硬盘，在意外终止训练时，可以继续加载上次保存的状态，继续训练。代码如下：
+
+  ```python
+  def state_dict(self):
+      r"""Returns the state of the optimizer as a :class:`dict`.
+      ...
+      return {
+      'state': packed_state,
+      'param_groups': param_groups,
+      }
+  ```
+
+  
+
+  
+
+  ### 
+
+## 3.代码示例
+
+### 1.step()
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128160900279.png" alt="image-20220128160900279" style="zoom:80%;" />
+
+
+
+### 2.zero_grad()
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128161105247.png" alt="image-20220128161105247" style="zoom:80%;" />
+
+可以看到优化器的 param_groups 中存储的参数和 weight 的内存地址是一样的，所以优化器中保存的是参数的地址，而不是把参数复制到优化器中。
+
+### 3.add_param_group()
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128161143841.png" alt="image-20220128161143841" style="zoom:80%;" />
+
+### 4.state_dict()
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128161222728.png" alt="image-20220128161222728" style="zoom:80%;" />
+
+### 5.load_state_dict()
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128161303645.png" alt="image-20220128161303645" style="zoom:80%;" />
+
+## 4.学习率
+
+学习率是影响损失函数收敛的重要因素，控制了梯度下降更新的步伐。下面构造一个损失函数 ![[公式]](https://www.zhihu.com/equation?tex=y%3D%282x%29%5E%7B2%7D)，![[公式]](https://www.zhihu.com/equation?tex=x) 的初始值为 2，学习率设置为 1。
+
+```python
+iter_rec, loss_rec, x_rec = list(), list(), list()
+
+lr = 0.01    # /1. /.5 /.2 /.1 /.125
+max_iteration = 20   # /1. 4     /.5 4   /.2 20 200
+
+for i in range(max_iteration):
+
+y = func(x)
+y.backward()
+
+print("Iter:{}, X:{:8}, X.grad:{:8}, loss:{:10}".format(
+i, x.detach().numpy()[0], x.grad.detach().numpy()[0], y.item()))
+
+x_rec.append(x.item())
+
+x.data.sub_(lr * x.grad)    # x -= x.grad  数学表达式意义:  x = x - x.grad    # 0.5 0.2 0.1 0.125
+x.grad.zero_()
+
+iter_rec.append(i)
+loss_rec.append(y)
+
+plt.subplot(121).plot(iter_rec, loss_rec, '-ro')
+plt.xlabel("Iteration")
+plt.ylabel("Loss value")
+
+x_t = torch.linspace(-3, 3, 100)
+y = func(x_t)
+plt.subplot(122).plot(x_t.numpy(), y.numpy(), label="y = 4*x^2")
+plt.grid()
+y_rec = [func(torch.tensor(i)).item() for i in x_rec]
+plt.subplot(122).plot(x_rec, y_rec, '-ro')
+plt.legend()
+plt.show()
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128161418905.png" alt="image-20220128161418905" style="zoom:80%;" />
+
+## 5.momentum 动量
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128161450179.png" alt="image-20220128161450179" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128162059095.png" alt="image-20220128162059095" style="zoom:80%;" />
+
+## 6.PyTroch 提供的 10 种优化器
+
+### 1.optim.SGD
+
+optim.SGD(params, lr=<required parameter>, momentum=0, dampening=0, weight_decay=0, nesterov=False
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128162349457.png" alt="image-20220128162349457" style="zoom:80%;" />
+
+### 2.optim.Adagrad
+
+自适应学习率梯度下降法
+
+### 3.optim.RMSprop
+
+Adagrad 的改进
+
+### 4.optim.Adadelta
+
+### 5.optim.Adam
+
+RMSProp 集合 Momentum，这个是目前最常用的优化器，因为它可以使用较大的初始学习率。
+
+### 6.optim.Adamax
+
+Adam 增加学习率上限
+
+### 7.optim.SparseAdam
+
+稀疏版的 Adam
+
+### 8.optim.ASGD
+
+随机平均梯度下降
+
+### 9.optim.Rprop
+
+弹性反向传播，这种优化器通常是在所有样本都一起训练，也就是 batchsize 为全部样本时使用。
+
+### 10.optim.LBFGS
+
+BFGS 在内存上的改进
+
+# 16.TensorBoard 介绍
+
+## 1.evenfile
+
+TensorBoardX 可视化的流程需要首先编写 Python 代码把需要可视化的数据保存到 event file 文件中，然后再使用 TensorBoardX 读取 event file 展示到网页中。
+
+下面的代码是一个保存 event file 的例子：
+
+```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from tensorboardX import SummaryWriter
+    from common_tools import set_seed
+    max_epoch = 100
+
+    writer = SummaryWriter(comment='test_comment', filename_suffix="test_suffix")
+
+    for x in range(max_epoch):
+
+        writer.add_scalar('y=2x', x * 2, x)
+        writer.add_scalar('y=pow_2_x', 2 ** x, x)
+
+        writer.add_scalars('data/scalar_group', {"xsinx": x * np.sin(x),
+                                                 "xcosx": x * np.cos(x)}, x)
+
+    writer.close()
+```
+
+上面具体保存的数据，我们先不关注，主要关注的是保存 event file 需要用到 SummaryWriter 类，这个类是用于保存数据的最重要的类，执行完后，会在当前文件夹生成一个`runs`的文件夹，里面保存的就是数据的 event file。
+
+然后在命令行中输入`tensorboard --logdir=lesson5/runs`启动 tensorboard 服务，其中`lesson5/runs`是`runs`文件夹的路径。然后命令行会显示 tensorboard 的访问地址：
+
+```python
+TensorBoard 1.9.0 at http://LAPTOP-DPDNNJSU:6006 (Press CTRL+C to quit)
+```
+
+## 2.SummaryWriter
+
+SummaryWriter(log_dir=None, comment='', purge_step=None, max_queue=10, flush_secs=120, filename_suffix='')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128164355692.png" alt="image-20220128164355692" style="zoom:80%;" />
+
+## 3.add_scalar
+
+add_scalar(tag, scalar_value, global_step=None, walltime=None)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128164439088.png" alt="image-20220128164439088" style="zoom:80%;" />
+
+## 4.add_scalars
+
+上面的`add_scalar()`只能记录一条曲线的数据。但是我们在实际中可能需要在一张图中同时展示多条曲线，比如在训练模型时，经常需要同时查看训练集和测试集的 loss。这时我们可以使用`add_scalars()`方法
+
+add_scalars(main_tag, tag_scalar_dict, global_step=None, walltime=None)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128164600858.png" alt="image-20220128164600858" style="zoom:80%;" />
+
+## 5.add_histogram
+
+add_histogram(tag, values, global_step=None, bins='tensorflow', walltime=None, max_bins=None)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128164622851.png" alt="image-20220128164622851" style="zoom:80%;" />
+
+下面的代码构造了均匀分布和正态分布，循环生成了 2 次，分别用`matplotlib`和 TensorBoard 进行画图。
+
+```python
+    writer = SummaryWriter(comment='test_comment', filename_suffix="test_suffix")
+    for x in range(2):
+        np.random.seed(x)
+        data_union = np.arange(100)
+        data_normal = np.random.normal(size=1000)
+        writer.add_histogram('distribution union', data_union, x)
+        writer.add_histogram('distribution normal', data_normal, x)
+        plt.subplot(121).hist(data_union, label="union")
+        plt.subplot(122).hist(data_normal, label="normal")
+        plt.legend()
+        plt.show()
+    writer.close()
+```
+
+ 除此之外，还会得到`DISTRIBUTIONS`，这是多分位折线图，纵轴有 9 个折线，表示数据的分布区间，某个区间的颜色越深，表示这个区间的数所占比例越大。横轴是 global_step。这个图的作用是观察数方差的变化情况。
+
+通常我们使用 TensorBoard 查看我们的网络参数在训练时的分布变化情况，如果分布很奇怪，并且 Loss 没有下降，这时需要考虑是什么原因改变了数据的分布较大的。如果前面网络层的梯度很小，后面网络层的梯度比较大，那么可能是梯度消失，因为后面网络层的较大梯度反向传播到前面网络层时已经变小了。如果前后网络层的梯度都很小，那么说明不是梯度消失，而是因为 Loss 很小，模型已经接近收敛。
+
+## 6.add_image
+
+add_image(tag, img_tensor, global_step=None, walltime=None, dataformats='CHW')
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128164805410.png" alt="image-20220128164805410" style="zoom:80%;" />
+
+代码如下：
+
+```python
+writer = SummaryWriter(comment='test_your_comment', filename_suffix="_test_your_filename_suffix")
+
+# img 1     random
+# 随机噪声的图片
+fake_img = torch.randn(3, 512, 512)
+writer.add_image("fake_img", fake_img, 1)
+time.sleep(1)
+
+# img 2     ones
+# 像素值全为 1 的图片，会乘以 255，所以是白色的图片
+fake_img = torch.ones(3, 512, 512)
+time.sleep(1)
+writer.add_image("fake_img", fake_img, 2)
+
+# img 3     1.1
+# 像素值全为 1.1 的图片，不会乘以 255，所以是黑色的图片
+fake_img = torch.ones(3, 512, 512) * 1.1
+time.sleep(1)
+writer.add_image("fake_img", fake_img, 3)
+
+# img 4     HW
+fake_img = torch.rand(512, 512)
+writer.add_image("fake_img", fake_img, 4, dataformats="HW")
+
+# img 5     HWC
+fake_img = torch.rand(512, 512, 3)
+writer.add_image("fake_img", fake_img, 5, dataformats="HWC")
+
+writer.close()
+```
+
+## 7.torchvision.utils.make_grid
+
+上面虽然可以通过拖动显示每张图片，但实际中我们希望在网格中同时展示多张图片，可以用到`make_grid()`函数。
+
+torchvision.utils.make_grid(tensor: Union[torch.Tensor, List[torch.Tensor]], nrow: int = 8, padding: int = 2, normalize: bool = False, range: Optional[Tuple[int, int]] = None, scale_each: bool = False, pad_value: int = 0)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128164928577.png" alt="image-20220128164928577" style="zoom:80%;" />
+
+下面的代码是人民币图片的网络可视化，batch_size 设置为 16，nrow 设置为 4，得到 4 行 4 列的网络图像
+
+```python
+writer = SummaryWriter(comment='test_your_comment', filename_suffix="_test_your_filename_suffix")
+
+split_dir = os.path.join(enviroments.project_dir, "data", "rmb_split")
+train_dir = os.path.join(split_dir, "train")
+# train_dir = "path to your training data"
+# 先把宽高缩放到 [32， 64] 之间，然后使用 toTensor 把 Image 转化为 tensor，并把像素值缩放到 [0, 1] 之间
+transform_compose = transforms.Compose([transforms.Resize((32, 64)), transforms.ToTensor()])
+train_data = RMBDataset(data_dir=train_dir, transform=transform_compose)
+train_loader = DataLoader(dataset=train_data, batch_size=16, shuffle=True)
+data_batch, label_batch = next(iter(train_loader))
+
+img_grid = vutils.make_grid(data_batch, nrow=4, normalize=True, scale_each=True)
+# img_grid = vutils.make_grid(data_batch, nrow=4, normalize=False, scale_each=False)
+writer.add_image("input img", img_grid, 0)
+
+writer.close()
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128165755190.png" alt="image-20220128165755190" style="zoom:80%;" />
+
+## 8.add_graph
+
+add_graph(model, input_to_model=None, verbose=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128170325913.png" alt="image-20220128170325913" style="zoom:80%;" />
+
+```python
+    writer = SummaryWriter(comment='test_your_comment', filename_suffix="_test_your_filename_suffix")
+
+    # 模型
+    fake_img = torch.randn(1, 3, 32, 32)
+    lenet = LeNet(classes=2)
+    writer.add_graph(lenet, fake_img)
+    writer.close()
+```
+
+## 9.torchsummary
+
+模型计算图的可视化还是比较复杂，不够清晰。而`torchsummary`能够查看模型的输入和输出的形状，可以更加清楚地输出模型的结构。
+
+torchsummary.summary(model, input_size, batch_size=-1, device="cuda")
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128171214715.png" alt="image-20220128171214715" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128171227815.png" alt="image-20220128171227815" style="zoom:80%;" />
+
+# 17.Hook 函数
+
+## 1.torch.Tensor.register_hook(hook)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128172618417.png" alt="image-20220128172618417" style="zoom:80%;" />
+
+```python
+w = torch.tensor([1.], requires_grad=True)
+x = torch.tensor([2.], requires_grad=True)
+a = torch.add(w, x)
+b = torch.add(w, 1)
+y = torch.mul(a, b)
+
+# 保存梯度的 list
+a_grad = list()
+
+# 定义 hook 函数，把梯度添加到 list 中
+def grad_hook(grad):
+    a_grad.append(grad)
+
+# 一个张量注册 hook 函数
+handle = a.register_hook(grad_hook)
+
+y.backward()
+
+# 查看梯度
+print("gradient:", w.grad, x.grad, a.grad, b.grad, y.grad)
+# 查看在 hook 函数里 list 记录的梯度
+print("a_grad[0]: ", a_grad[0])
+handle.remove()
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128172642656.png" alt="image-20220128172642656" style="zoom:80%;" />
+
+```python
+w = torch.tensor([1.], requires_grad=True)
+x = torch.tensor([2.], requires_grad=True)
+a = torch.add(w, x)
+b = torch.add(w, 1)
+y = torch.mul(a, b)
+
+a_grad = list()
+
+def grad_hook(grad):
+    grad *= 2
+    return grad*3
+
+handle = w.register_hook(grad_hook)
+
+y.backward()
+
+# 查看梯度
+print("w.grad: ", w.grad)
+handle.remove()
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128172701054.png" alt="image-20220128172701054" style="zoom:80%;" />
+
+## 2.torch.nn.Module.register_forward_hook(hook)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128172728885.png" alt="image-20220128172728885" style="zoom:80%;" />
+
+```python
+    class Net(nn.Module):
+        def __init__(self):
+            super(Net, self).__init__()
+            self.conv1 = nn.Conv2d(1, 2, 3)
+            self.pool1 = nn.MaxPool2d(2, 2)
+
+        def forward(self, x):
+            x = self.conv1(x)
+            x = self.pool1(x)
+            return x
+
+    def forward_hook(module, data_input, data_output):
+        fmap_block.append(data_output)
+        input_block.append(data_input)
+
+    # 初始化网络
+    net = Net()
+    net.conv1.weight[0].detach().fill_(1)
+    net.conv1.weight[1].detach().fill_(2)
+    net.conv1.bias.data.detach().zero_()
+
+    # 注册hook
+    fmap_block = list()
+    input_block = list()
+    net.conv1.register_forward_hook(forward_hook)
+
+    # inference
+    fake_img = torch.ones((1, 1, 4, 4))   # batch size * channel * H * W
+    output = net(fake_img)
+
+
+    # 观察
+    print("output shape: {}\noutput value: {}\n".format(output.shape, output))
+    print("feature maps shape: {}\noutput value: {}\n".format(fmap_block[0].shape, fmap_block[0]))
+    print("input shape: {}\ninput value: {}".format(input_block[0][0].shape, input_block[0]))
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128172753807.png" alt="image-20220128172753807" style="zoom:80%;" />
+
+## 3.torch.Tensor.register_forward_pre_hook()
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128172811677.png" alt="image-20220128172811677" style="zoom:80%;" />
+
+## 4.torch.Tensor.register_backward_hook()
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128172837911.png" alt="image-20220128172837911" style="zoom:80%;" />
+
+```python
+    class Net(nn.Module):
+        def __init__(self):
+            super(Net, self).__init__()
+            self.conv1 = nn.Conv2d(1, 2, 3)
+            self.pool1 = nn.MaxPool2d(2, 2)
+
+        def forward(self, x):
+            x = self.conv1(x)
+            x = self.pool1(x)
+            return x
+
+    def forward_hook(module, data_input, data_output):
+        fmap_block.append(data_output)
+        input_block.append(data_input)
+
+    def forward_pre_hook(module, data_input):
+        print("forward_pre_hook input:{}".format(data_input))
+
+    def backward_hook(module, grad_input, grad_output):
+        print("backward hook input:{}".format(grad_input))
+        print("backward hook output:{}".format(grad_output))
+
+    # 初始化网络
+    net = Net()
+    net.conv1.weight[0].detach().fill_(1)
+    net.conv1.weight[1].detach().fill_(2)
+    net.conv1.bias.data.detach().zero_()
+
+    # 注册hook
+    fmap_block = list()
+    input_block = list()
+    net.conv1.register_forward_hook(forward_hook)
+    net.conv1.register_forward_pre_hook(forward_pre_hook)
+    net.conv1.register_backward_hook(backward_hook)
+
+    # inference
+    fake_img = torch.ones((1, 1, 4, 4))   # batch size * channel * H * W
+    output = net(fake_img)
+
+    loss_fnc = nn.L1Loss()
+    target = torch.randn_like(output)
+    loss = loss_fnc(target, output)
+    loss.backward()
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128172855992.png" alt="image-20220128172855992" style="zoom:80%;" />
+
+## 5.Hook 函数提取网络的特征图
+
+下面通过`hook`函数获取 AlexNet 每个卷积层的所有卷积核参数，以形状作为 key，value 对应该层多个卷积核的 list。然后取出每层的第一个卷积核，形状是 [1, in_channle, h, w]，转换为 [in_channle, 1, h, w]，使用 TensorBoard 进行可视化，代码如下：
+
+```python
+    writer = SummaryWriter(comment='test_your_comment', filename_suffix="_test_your_filename_suffix")
+
+    # 数据
+    path_img = "imgs/lena.png"     # your path to image
+    normMean = [0.49139968, 0.48215827, 0.44653124]
+    normStd = [0.24703233, 0.24348505, 0.26158768]
+
+    norm_transform = transforms.Normalize(normMean, normStd)
+    img_transforms = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        norm_transform
+    ])
+
+    img_pil = Image.open(path_img).convert('RGB')
+    if img_transforms is not None:
+        img_tensor = img_transforms(img_pil)
+    img_tensor.unsqueeze_(0)    # chw --> bchw
+
+    # 模型
+    alexnet = models.alexnet(pretrained=True)
+
+    # 注册hook
+    fmap_dict = dict()
+    for name, sub_module in alexnet.named_modules():
+
+        if isinstance(sub_module, nn.Conv2d):
+            key_name = str(sub_module.weight.shape)
+            fmap_dict.setdefault(key_name, list())
+            # 由于AlexNet 使用 nn.Sequantial 包装，所以 name 的形式是：features.0  features.1
+            n1, n2 = name.split(".")
+
+            def hook_func(m, i, o):
+                key_name = str(m.weight.shape)
+                fmap_dict[key_name].append(o)
+
+            alexnet._modules[n1]._modules[n2].register_forward_hook(hook_func)
+
+    # forward
+    output = alexnet(img_tensor)
+
+    # add image
+    for layer_name, fmap_list in fmap_dict.items():
+        fmap = fmap_list[0]# 取出第一个卷积核的参数
+        fmap.transpose_(0, 1) # 把 BCHW 转换为 CBHW
+
+        nrow = int(np.sqrt(fmap.shape[0]))
+        fmap_grid = vutils.make_grid(fmap, normalize=True, scale_each=True, nrow=nrow)
+        writer.add_image('feature map in {}'.format(layer_name), fmap_grid, global_step=322)
+```
+
+使用 TensorBoard 进行可视化如下：
+
+![img](https://image.zhangxiann.com/20200706095728.png)
+
+# 18.weight decay 和 dropout
+
+## 1.Regularization
+
+Regularization 中文是正则化，可以理解为一种减少方差的策略。
+
+在机器学习中，误差可以分解为：偏差，方差与噪声之和。即误差=偏差+方差+噪声
+
+偏差度量了学习算法的期望预测与真实结果的偏离程度，即刻画了学习算法本身的拟合能力。
+
+方差度量了同样大小的训练集的变动所导致的学习性能的变化，即刻画了数据扰动所造成的影响。
+
+噪声则表达了在当前任务上学习任何算法所能达到的期望泛化误差的下界。
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128175244727.png" alt="image-20220128175244727" style="zoom:80%;" />
+
+下面代码对比了没有 weight decay 的优化器和 weight decay 为 0.01 的优化器的训练情况，在线性回归的数据集上进行实验，模型使用 3 层的全连接网络，并使用 TensorBoard 可视化每层权值的变化情况。代码如下：
+
+```python
+import torch
+import torch.nn as nn
+import matplotlib.pyplot as plt
+from common_tools import set_seed
+from tensorboardX import SummaryWriter
+
+set_seed(1)  # 设置随机种子
+n_hidden = 200
+max_iter = 2000
+disp_interval = 200
+lr_init = 0.01
+
+
+# ============================ step 1/5 数据 ============================
+def gen_data(num_data=10, x_range=(-1, 1)):
+
+    w = 1.5
+    train_x = torch.linspace(*x_range, num_data).unsqueeze_(1)
+    train_y = w*train_x + torch.normal(0, 0.5, size=train_x.size())
+    test_x = torch.linspace(*x_range, num_data).unsqueeze_(1)
+    test_y = w*test_x + torch.normal(0, 0.3, size=test_x.size())
+
+    return train_x, train_y, test_x, test_y
+
+
+train_x, train_y, test_x, test_y = gen_data(x_range=(-1, 1))
+
+
+# ============================ step 2/5 模型 ============================
+class MLP(nn.Module):
+    def __init__(self, neural_num):
+        super(MLP, self).__init__()
+        self.linears = nn.Sequential(
+            nn.Linear(1, neural_num),
+            nn.ReLU(inplace=True),
+            nn.Linear(neural_num, neural_num),
+            nn.ReLU(inplace=True),
+            nn.Linear(neural_num, neural_num),
+            nn.ReLU(inplace=True),
+            nn.Linear(neural_num, 1),
+        )
+
+    def forward(self, x):
+        return self.linears(x)
+
+
+net_normal = MLP(neural_num=n_hidden)
+net_weight_decay = MLP(neural_num=n_hidden)
+
+# ============================ step 3/5 优化器 ============================
+optim_normal = torch.optim.SGD(net_normal.parameters(), lr=lr_init, momentum=0.9)
+optim_wdecay = torch.optim.SGD(net_weight_decay.parameters(), lr=lr_init, momentum=0.9, weight_decay=1e-2)
+
+# ============================ step 4/5 损失函数 ============================
+loss_func = torch.nn.MSELoss()
+
+# ============================ step 5/5 迭代训练 ============================
+
+writer = SummaryWriter(comment='_test_tensorboard', filename_suffix="12345678")
+for epoch in range(max_iter):
+
+    # forward
+    pred_normal, pred_wdecay = net_normal(train_x), net_weight_decay(train_x)
+    loss_normal, loss_wdecay = loss_func(pred_normal, train_y), loss_func(pred_wdecay, train_y)
+
+    optim_normal.zero_grad()
+    optim_wdecay.zero_grad()
+
+    loss_normal.backward()
+    loss_wdecay.backward()
+
+    optim_normal.step()
+    optim_wdecay.step()
+
+    if (epoch+1) % disp_interval == 0:
+
+        # 可视化
+        for name, layer in net_normal.named_parameters():
+            writer.add_histogram(name + '_grad_normal', layer.grad, epoch)
+            writer.add_histogram(name + '_data_normal', layer, epoch)
+
+        for name, layer in net_weight_decay.named_parameters():
+            writer.add_histogram(name + '_grad_weight_decay', layer.grad, epoch)
+            writer.add_histogram(name + '_data_weight_decay', layer, epoch)
+
+        test_pred_normal, test_pred_wdecay = net_normal(test_x), net_weight_decay(test_x)
+
+        # 绘图
+        plt.scatter(train_x.data.numpy(), train_y.data.numpy(), c='blue', s=50, alpha=0.3, label='train')
+        plt.scatter(test_x.data.numpy(), test_y.data.numpy(), c='red', s=50, alpha=0.3, label='test')
+        plt.plot(test_x.data.numpy(), test_pred_normal.data.numpy(), 'r-', lw=3, label='no weight decay')
+        plt.plot(test_x.data.numpy(), test_pred_wdecay.data.numpy(), 'b--', lw=3, label='weight decay')
+        plt.text(-0.25, -1.5, 'no weight decay loss={:.6f}'.format(loss_normal.item()), fontdict={'size': 15, 'color': 'red'})
+        plt.text(-0.25, -2, 'weight decay loss={:.6f}'.format(loss_wdecay.item()), fontdict={'size': 15, 'color': 'red'})
+
+        plt.ylim((-2.5, 2.5))
+        plt.legend(loc='upper left')
+        plt.title("Epoch: {}".format(epoch+1))
+        plt.show()
+        plt.close()
+```
+
+<img src="https://image.zhangxiann.com/20200706121614.png" alt="img" style="zoom:80%;" />
+
+可以看到使用了 weight decay 的模型虽然在训练集的 loss 更高，但是更加平滑，泛化能力更强。
+
+## 2.weight decay 在 优化器中的实现
+
+由于 weight decay 在优化器的一个参数，因此在执行`optim_wdecay.step()`时，会计算 weight decay 后的梯度，具体代码如下：
+
+```python
+    def step(self, closure=None):
+        """Performs a single optimization step.
+
+        Arguments:
+            closure (callable, optional): A closure that reevaluates the model
+                and returns the loss.
+        """
+        loss = None
+        if closure is not None:
+            loss = closure()
+
+        for group in self.param_groups:
+            weight_decay = group['weight_decay']
+            momentum = group['momentum']
+            dampening = group['dampening']
+            nesterov = group['nesterov']
+
+            for p in group['params']:
+                if p.grad is None:
+                    continue
+                d_p = p.grad.data
+                if weight_decay != 0:
+                    d_p.add_(weight_decay, p.data)
+                    ...
+                    ...
+                    ...
+                p.data.add_(-group['lr'], d_p)
+```
+
+## 3.Dropout
+
+Dropout 是另一种抑制过拟合的方法。在使用 dropout 时，数据尺度会发生变化，如果设置 dropout_prob =0.3，那么在训练时，数据尺度会变为原来的 70%；而在测试时，执行了 model.eval() 后，dropout 是关闭的，因此所有权重需要乘以 (1-dropout_prob)，把数据尺度也缩放到 70%。PyTorch 中 Dropout 层如下，通常放在每个网路层的最前面：
+
+```python
+torch.nn.Dropout(p=0.5, inplace=False)
+```
+
+p：需要注意的是，p 是被舍弃的概率，也叫失活概率
+
+下面实验使用的依然是线性回归的例子，两个网络均是 3 层的全连接层，每层前面都设置 dropout，一个网络的 dropout 设置为 0，另一个网络的 dropout 设置为 0.5，并使用 TensorBoard 可视化每层权值的变化情况。代码如下：
+
+```python
+import torch
+import torch.nn as nn
+import matplotlib.pyplot as plt
+from common_tools import set_seed
+from tensorboardX import SummaryWriter
+
+set_seed(1)  # 设置随机种子
+n_hidden = 200
+max_iter = 2000
+disp_interval = 400
+lr_init = 0.01
+
+
+# ============================ step 1/5 数据 ============================
+def gen_data(num_data=10, x_range=(-1, 1)):
+
+    w = 1.5
+    train_x = torch.linspace(*x_range, num_data).unsqueeze_(1)
+    train_y = w*train_x + torch.normal(0, 0.5, size=train_x.size())
+    test_x = torch.linspace(*x_range, num_data).unsqueeze_(1)
+    test_y = w*test_x + torch.normal(0, 0.3, size=test_x.size())
+
+    return train_x, train_y, test_x, test_y
+
+
+train_x, train_y, test_x, test_y = gen_data(x_range=(-1, 1))
+
+
+# ============================ step 2/5 模型 ============================
+class MLP(nn.Module):
+    def __init__(self, neural_num, d_prob=0.5):
+        super(MLP, self).__init__()
+        self.linears = nn.Sequential(
+
+            nn.Linear(1, neural_num),
+            nn.ReLU(inplace=True),
+
+            nn.Dropout(d_prob),
+            nn.Linear(neural_num, neural_num),
+            nn.ReLU(inplace=True),
+
+            nn.Dropout(d_prob),
+            nn.Linear(neural_num, neural_num),
+            nn.ReLU(inplace=True),
+
+            nn.Dropout(d_prob),
+            nn.Linear(neural_num, 1),
+        )
+
+    def forward(self, x):
+        return self.linears(x)
+
+
+net_prob_0 = MLP(neural_num=n_hidden, d_prob=0.)
+net_prob_05 = MLP(neural_num=n_hidden, d_prob=0.5)
+
+# ============================ step 3/5 优化器 ============================
+optim_normal = torch.optim.SGD(net_prob_0.parameters(), lr=lr_init, momentum=0.9)
+optim_reglar = torch.optim.SGD(net_prob_05.parameters(), lr=lr_init, momentum=0.9)
+
+# ============================ step 4/5 损失函数 ============================
+loss_func = torch.nn.MSELoss()
+
+# ============================ step 5/5 迭代训练 ============================
+
+writer = SummaryWriter(comment='_test_tensorboard', filename_suffix="12345678")
+for epoch in range(max_iter):
+
+    pred_normal, pred_wdecay = net_prob_0(train_x), net_prob_05(train_x)
+    loss_normal, loss_wdecay = loss_func(pred_normal, train_y), loss_func(pred_wdecay, train_y)
+
+    optim_normal.zero_grad()
+    optim_reglar.zero_grad()
+
+    loss_normal.backward()
+    loss_wdecay.backward()
+
+    optim_normal.step()
+    optim_reglar.step()
+
+    if (epoch+1) % disp_interval == 0:
+
+        net_prob_0.eval()
+        net_prob_05.eval()
+
+        # 可视化
+        for name, layer in net_prob_0.named_parameters():
+            writer.add_histogram(name + '_grad_normal', layer.grad, epoch)
+            writer.add_histogram(name + '_data_normal', layer, epoch)
+
+        for name, layer in net_prob_05.named_parameters():
+            writer.add_histogram(name + '_grad_regularization', layer.grad, epoch)
+            writer.add_histogram(name + '_data_regularization', layer, epoch)
+
+        test_pred_prob_0, test_pred_prob_05 = net_prob_0(test_x), net_prob_05(test_x)
+
+        # 绘图
+        plt.scatter(train_x.data.numpy(), train_y.data.numpy(), c='blue', s=50, alpha=0.3, label='train')
+        plt.scatter(test_x.data.numpy(), test_y.data.numpy(), c='red', s=50, alpha=0.3, label='test')
+        plt.plot(test_x.data.numpy(), test_pred_prob_0.data.numpy(), 'r-', lw=3, label='d_prob_0')
+        plt.plot(test_x.data.numpy(), test_pred_prob_05.data.numpy(), 'b--', lw=3, label='d_prob_05')
+        plt.text(-0.25, -1.5, 'd_prob_0 loss={:.8f}'.format(loss_normal.item()), fontdict={'size': 15, 'color': 'red'})
+        plt.text(-0.25, -2, 'd_prob_05 loss={:.6f}'.format(loss_wdecay.item()), fontdict={'size': 15, 'color': 'red'})
+
+        plt.ylim((-2.5, 2.5))
+        plt.legend(loc='upper left')
+        plt.title("Epoch: {}".format(epoch+1))
+        plt.show()
+        plt.close()
+
+        net_prob_0.train()
+        net_prob_05.train()
+```
+
+<img src="https://image.zhangxiann.com/20200706125509.png" alt="img" style="zoom:80%;" />
+
+我们使用 TensorBoard 查看第三层网络的权值变化情况。
+
+dropout =0 的权值变化如下：
+
+<img src="https://image.zhangxiann.com/20200706130139.png" alt="img" style="zoom:67%;" />
+
+dropout =0.5 的权值变化如下：
+
+<img src="https://image.zhangxiann.com/20200706130210.png" alt="img" style="zoom:67%;" />
+
+ 可以看到，加了 dropout 之后，权值更加集中在 0 附近，使得神经元之间的依赖性不至于过大。
+
+## 4.model.eval() 和 model.trian()
+
+有些网络层在训练状态和测试状态是不一样的，如 dropout 层，在训练时 dropout 层是有效的，但是数据尺度会缩放，为了保持数据尺度不变，所有的权重需要除以 1-p。而在测试时 dropout 层是关闭的。因此在测试时需要先调用`model.eval()`设置各个网络层的的`training`属性为 False，在训练时需要先调用`model.train()`设置各个网络层的的`training`属性为 True。
+
+# 19.Batch Normalization
+
+## 1.Batch Normalization
+
+称为批标准化。批是指一批数据，通常为 mini-batch；标准化是处理后的数据服从$N(0,1)$的正态分布。
+
+批标准化的优点有如下：
+
+* 可以使用更大的学习率，加速模型收敛
+* 可以不用精心设计权值初始化
+* 可以不用 dropout 或者较小的 dropout
+* 可以不用 L2 或者较小的 weight decay
+* 可以不用 LRN (local response normalization)
+
+![img](https://img-blog.csdn.net/20160312190726792)
+
+**第一步**，我们获得了一个mini-batch的输入в = {x1,..., xm}，可以看出batch size就是m。
+
+**第二步**，求这个batch的均值μ和方差σ
+
+**第三步**，对所有$x_i$ ∈в，进行一个标准化，得到$x_i$`。
+
+**第四步**，对xi`做一个线性变换，得到输出$y_i$。
+
+Batch Normalization 的提出主要是为了解决 Internal Covariate Shift (ICS)。在训练过程中，数据需要经过多层的网络，如果数据在前向传播的过程中，尺度发生了变化，可能会导致梯度爆炸或者梯度消失，从而导致模型难以收敛。
+
+**Batch Normalization 层一般在激活函数前一层。**
+
+下面的代码打印一个网络的每个网络层的输出，在没有进行初始化时，数据尺度越来越小。
+
+```python
+import torch
+import numpy as np
+import torch.nn as nn
+from common_tools import set_seed
+
+set_seed(1)  # 设置随机种子
+
+
+class MLP(nn.Module):
+    def __init__(self, neural_num, layers=100):
+        super(MLP, self).__init__()
+        self.linears = nn.ModuleList([nn.Linear(neural_num, neural_num, bias=False) for i in range(layers)])
+        self.bns = nn.ModuleList([nn.BatchNorm1d(neural_num) for i in range(layers)])
+        self.neural_num = neural_num
+
+    def forward(self, x):
+
+        for (i, linear), bn in zip(enumerate(self.linears), self.bns):
+            x = linear(x)
+            # x = bn(x)
+            x = torch.relu(x)
+
+            if torch.isnan(x.std()):
+                print("output is nan in {} layers".format(i))
+                break
+
+            print("layers:{}, std:{}".format(i, x.std().item()))
+
+        return x
+
+    def initialize(self):
+        for m in self.modules():
+            if isinstance(m, nn.Linear):
+
+                # method 1
+                # nn.init.normal_(m.weight.data, std=1)    # normal: mean=0, std=1
+
+                # method 2 kaiming
+                nn.init.kaiming_normal_(m.weight.data)
+
+
+neural_nums = 256
+layer_nums = 100
+batch_size = 16
+
+net = MLP(neural_nums, layer_nums)
+# net.initialize()
+
+inputs = torch.randn((batch_size, neural_nums))  # normal: mean=0, std=1
+
+output = net(inputs)
+print(output)
+```
+
+当使用`nn.init.kaiming_normal_()`初始化后，数据的标准差尺度稳定在 [0.6, 0.9]。
+
+当我们不对网络层进行权值初始化，而是在每个激活函数层之前使用 bn 层，查看数据的标准差尺度稳定在 [0.58, 0.59]。因此 Batch Normalization 可以不用精心设计权值初始化。
+
+下面以人民币二分类实验中的 LeNet 为例，添加 bn 层，对比不带 bn 层的网络和带 bn 层的网络的训练过程。
+
+不带 bn 层的网络，并且使用 kaiming 初始化权值，训练过程如下：
+
+<img src="https://image.zhangxiann.com/20200706203137.png" alt="img" style="zoom:80%;" />
+
+带有 bn 层的 LeNet 定义如下：
+
+```python
+class LeNet_bn(nn.Module):
+    def __init__(self, classes):
+        super(LeNet_bn, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.bn1 = nn.BatchNorm2d(num_features=6)
+
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.bn2 = nn.BatchNorm2d(num_features=16)
+
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.bn3 = nn.BatchNorm1d(num_features=120)
+
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, classes)
+
+    def forward(self, x):
+        out = self.conv1(x)
+        out = self.bn1(out)
+        out = F.relu(out)
+
+        out = F.max_pool2d(out, 2)
+
+        out = self.conv2(out)
+        out = self.bn2(out)
+        out = F.relu(out)
+
+        out = F.max_pool2d(out, 2)
+
+        out = out.view(out.size(0), -1)
+
+        out = self.fc1(out)
+        out = self.bn3(out)
+        out = F.relu(out)
+
+        out = F.relu(self.fc2(out))
+        out = self.fc3(out)
+        return out
+```
+
+带 bn 层的网络，并且不使用 kaiming 初始化权值，训练过程如下：
+
+<img src="https://image.zhangxiann.com/20200706203417.png" alt="img" style="zoom:80%;" />
+
+ 虽然训练过程中，训练集的 loss 也有激增，但只是增加到 0.4，非常稳定。
+
+## 2.Batch Normalization in PyTorch
+
+在 PyTorch 中，有 3 个 Batch Normalization 类
+
+- nn.BatchNorm1d()，输入数据的形状是 $B \times C \times 1D_feature$
+- nn.BatchNorm2d()，输入数据的形状是 $B \times C \times 2D_feature$
+- nn.BatchNorm3d()，输入数据的形状是 $B \times C \times 3D_feature$
+
+### 1.nn.BatchNorm1d()
+
+torch.nn.BatchNorm1d(num_features, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128183044675.png" alt="image-20220128183044675" style="zoom:80%;" />
+
+输入数据的形状是 $B \times C \times 1D_feature$。在下面的例子中，数据的维度是：(3, 5, 1)，表示一个 mini-batch 有 3 个样本，每个样本有 5 个特征，每个特征的维度是 1。那么就会计算 5 个均值和方差，分别对应每个特征维度。momentum 设置为 0.3，第一次的均值和方差默认为 0 和 1。输入两次 mini-batch 的数据。
+
+<img src="https://image.zhangxiann.com/20200706220302.png" alt="img" style="zoom:80%;" />
+
+```python
+    batch_size = 3
+    num_features = 5
+    momentum = 0.3
+
+    features_shape = (1)
+
+    feature_map = torch.ones(features_shape)                                                    # 1D
+    feature_maps = torch.stack([feature_map*(i+1) for i in range(num_features)], dim=0)         # 2D
+    feature_maps_bs = torch.stack([feature_maps for i in range(batch_size)], dim=0)             # 3D
+    print("input data:\n{} shape is {}".format(feature_maps_bs, feature_maps_bs.shape))
+
+    bn = nn.BatchNorm1d(num_features=num_features, momentum=momentum)
+
+    running_mean, running_var = 0, 1
+    mean_t, var_t = 2, 0
+    for i in range(2):
+        outputs = bn(feature_maps_bs)
+
+        print("\niteration:{}, running mean: {} ".format(i, bn.running_mean))
+        print("iteration:{}, running var:{} ".format(i, bn.running_var))
+
+
+
+        running_mean = (1 - momentum) * running_mean + momentum * mean_t
+        running_var = (1 - momentum) * running_var + momentum * var_t
+
+        print("iteration:{}, 第二个特征的running mean: {} ".format(i, running_mean))
+        print("iteration:{}, 第二个特征的running var:{}".format(i, running_var))
+```
+
+```python
+input data:
+tensor([[[1.],
+         [2.],
+         [3.],
+         [4.],
+         [5.]],
+        [[1.],
+         [2.],
+         [3.],
+         [4.],
+         [5.]],
+        [[1.],
+         [2.],
+         [3.],
+         [4.],
+         [5.]]]) shape is torch.Size([3, 5, 1])
+iteration:0, running mean: tensor([0.3000, 0.6000, 0.9000, 1.2000, 1.5000]) 
+iteration:0, running var:tensor([0.7000, 0.7000, 0.7000, 0.7000, 0.7000]) 
+iteration:0, 第二个特征的running mean: 0.6 
+iteration:0, 第二个特征的running var:0.7
+iteration:1, running mean: tensor([0.5100, 1.0200, 1.5300, 2.0400, 2.5500]) 
+iteration:1, running var:tensor([0.4900, 0.4900, 0.4900, 0.4900, 0.4900]) 
+iteration:1, 第二个特征的running mean: 1.02 
+iteration:1, 第二个特征的running var:0.48999999999999994
+```
+
+虽然两个 mini-batch 的数据是一样的，但是 bn 层的均值和方差却不一样。以第二个特征的均值计算为例，值都是 2。
+
+- 第一次 bn 层的均值计算：$running_mean=(1-momentum) \times pre_running_mean + momentum \times mean_t =(1-0.3) \times 0 + 0.3 \times 2 =0.6$
+- 第二次 bn 层的均值计算：$running_mean=(1-momentum) \times pre_running_mean + momentum \times mean_t =(1-0.3) \times 0.6 + 0.3 \times 2 =1.02$
+
+### 2.nn.BatchNorm2d()
+
+输入数据的形状是 $B \times C \times 2D_feature$。在下面的例子中，数据的维度是：(3, 3, 2, 2)，表示一个 mini-batch 有 3 个样本，每个样本有 3 个特征，每个特征的维度是 $1 \times 2$。那么就会计算 3 个均值和方差，分别对应每个特征维度。momentum 设置为 0.3，第一次的均值和方差默认为 0 和 1。输入两次 mini-batch 的数据。
+
+<img src="https://image.zhangxiann.com/20200706220726.png" alt="img" style="zoom:80%;" />
+
+```python
+    batch_size = 3
+    num_features = 3
+    momentum = 0.3
+
+    features_shape = (2, 2)
+
+    feature_map = torch.ones(features_shape)                                                    # 2D
+    feature_maps = torch.stack([feature_map*(i+1) for i in range(num_features)], dim=0)         # 3D
+    feature_maps_bs = torch.stack([feature_maps for i in range(batch_size)], dim=0)             # 4D
+
+    # print("input data:\n{} shape is {}".format(feature_maps_bs, feature_maps_bs.shape))
+
+    bn = nn.BatchNorm2d(num_features=num_features, momentum=momentum)
+
+    running_mean, running_var = 0, 1
+
+    for i in range(2):
+        outputs = bn(feature_maps_bs)
+
+        print("\niter:{}, running_mean: {}".format(i, bn.running_mean))
+        print("iter:{}, running_var: {}".format(i, bn.running_var))
+
+        print("iter:{}, weight: {}".format(i, bn.weight.data.numpy()))
+        print("iter:{}, bias: {}".format(i, bn.bias.data.numpy()))
+```
+
+```python
+iter:0, running_mean: tensor([0.3000, 0.6000, 0.9000])
+iter:0, running_var: tensor([0.7000, 0.7000, 0.7000])
+iter:0, weight: [1. 1. 1.]
+iter:0, bias: [0. 0. 0.]
+iter:1, running_mean: tensor([0.5100, 1.0200, 1.5300])
+iter:1, running_var: tensor([0.4900, 0.4900, 0.4900])
+iter:1, weight: [1. 1. 1.]
+iter:1, bias: [0. 0. 0.]
+```
+
+### 3.nn.BatchNorm3d()
+
+输入数据的形状是 $B \times C \times 3D_feature$。在下面的例子中，数据的维度是：(3, 2, 2, 2, 3)，表示一个 mini-batch 有 3 个样本，每个样本有 2 个特征，每个特征的维度是 $2 \times 2 \times 3$。那么就会计算 2 个均值和方差，分别对应每个特征维度。momentum 设置为 0.3，第一次的均值和方差默认为 0 和 1。输入两次 mini-batch 的数据。
+
+<img src="https://image.zhangxiann.com/20200706221801.png" alt="img" style="zoom:80%;" />
+
+```python
+    batch_size = 3
+    num_features = 3
+    momentum = 0.3
+
+    features_shape = (2, 2, 3)
+
+    feature = torch.ones(features_shape)                                                # 3D
+    feature_map = torch.stack([feature * (i + 1) for i in range(num_features)], dim=0)  # 4D
+    feature_maps = torch.stack([feature_map for i in range(batch_size)], dim=0)         # 5D
+
+    # print("input data:\n{} shape is {}".format(feature_maps, feature_maps.shape))
+
+    bn = nn.BatchNorm3d(num_features=num_features, momentum=momentum)
+
+    running_mean, running_var = 0, 1
+
+    for i in range(2):
+        outputs = bn(feature_maps)
+
+        print("\niter:{}, running_mean.shape: {}".format(i, bn.running_mean.shape))
+        print("iter:{}, running_var.shape: {}".format(i, bn.running_var.shape))
+
+        print("iter:{}, weight.shape: {}".format(i, bn.weight.shape))
+        print("iter:{}, bias.shape: {}".format(i, bn.bias.shape))
+```
+
+```python
+iter:0, running_mean.shape: torch.Size([3])
+iter:0, running_var.shape: torch.Size([3])
+iter:0, weight.shape: torch.Size([3])
+iter:0, bias.shape: torch.Size([3])
+iter:1, running_mean.shape: torch.Size([3])
+iter:1, running_var.shape: torch.Size([3])
+iter:1, weight.shape: torch.Size([3])
+iter:1, bias.shape: torch.Size([3])
+```
+
+## 3.Layer Normalization
+
+提出的原因：Batch Normalization 不适用于变长的网络，如 RNN
+
+思路：每个网络层计算均值和方差
+
+注意事项：
+
+- 不再有 running_mean 和 running_var
+- $\gamma$ 和 $\beta$ 为逐样本的
+
+<img src="https://image.zhangxiann.com/20200707095227.png" alt="img" style="zoom:80%;" />
+
+```python
+torch.nn.LayerNorm(normalized_shape, eps=1e-05, elementwise_affine=True)
+```
+
+参数：
+
+- normalized_shape：该层特征的形状，可以取$C \times H \times W$、$H \times W$、$W$
+- eps：标准化时的分母修正项
+- elementwise_affine：是否需要逐个样本 affine transform
+
+下面代码中，输入数据的形状是 $B \times C \times feature$，(8, 2, 3, 4)，表示一个 mini-batch 有 8 个样本，每个样本有 2 个特征，每个特征的维度是 $3 \times 4$。那么就会计算 8 个均值和方差，分别对应每个样本。
+
+```python
+    batch_size = 8
+    num_features = 2
+
+    features_shape = (3, 4)
+
+    feature_map = torch.ones(features_shape)  # 2D
+    feature_maps = torch.stack([feature_map * (i + 1) for i in range(num_features)], dim=0)  # 3D
+    feature_maps_bs = torch.stack([feature_maps for i in range(batch_size)], dim=0)  # 4D
+
+    # feature_maps_bs shape is [8, 6, 3, 4],  B * C * H * W
+    # ln = nn.LayerNorm(feature_maps_bs.size()[1:], elementwise_affine=True)
+    # ln = nn.LayerNorm(feature_maps_bs.size()[1:], elementwise_affine=False)
+    # ln = nn.LayerNorm([6, 3, 4])
+    ln = nn.LayerNorm([2, 3, 4])
+
+    output = ln(feature_maps_bs)
+
+    print("Layer Normalization")
+    print(ln.weight.shape)
+    print(feature_maps_bs[0, ...])
+    print(output[0, ...])
+```
+
+```python
+Layer Normalization
+torch.Size([2, 3, 4])
+tensor([[[1., 1., 1., 1.],
+         [1., 1., 1., 1.],
+         [1., 1., 1., 1.]],
+        [[2., 2., 2., 2.],
+         [2., 2., 2., 2.],
+         [2., 2., 2., 2.]]])
+tensor([[[-1.0000, -1.0000, -1.0000, -1.0000],
+         [-1.0000, -1.0000, -1.0000, -1.0000],
+         [-1.0000, -1.0000, -1.0000, -1.0000]],
+        [[ 1.0000,  1.0000,  1.0000,  1.0000],
+         [ 1.0000,  1.0000,  1.0000,  1.0000],
+         [ 1.0000,  1.0000,  1.0000,  1.0000]]], grad_fn=<SelectBackward>)
+```
+
+Layer Normalization 可以设置 normalized_shape 为 (3, 4) 或者 (4)。
+
+## 4.Instance Normalization
+
+提出的原因：Batch Normalization 不适用于图像生成。因为在一个 mini-batch 中的图像有不同的风格，不能把这个 batch 里的数据都看作是同一类取标准化。
+
+思路：逐个 instance 的 channel 计算均值和方差。也就是每个 feature map 计算一个均值和方差。
+
+包括 InstanceNorm1d、InstanceNorm2d、InstanceNorm3d。
+
+```python
+torch.nn.InstanceNorm1d(num_features, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+```
+
+参数：
+
+- num_features：一个样本的特征数，这个参数最重要
+- eps：分母修正项
+- momentum：指数加权平均估计当前的的均值和方差
+- affine：是否需要 affine transform
+- track_running_stats：True 为训练状态，此时均值和方差会根据每个 mini-batch 改变。False 为测试状态，此时均值和方差会固定
+
+下面代码中，输入数据的形状是 $B \times C \times 2D_feature$，(3, 3, 2, 2)，表示一个 mini-batch 有 3 个样本，每个样本有 3 个特征，每个特征的维度是 $2 \times 2 $。那么就会计算 $3 \times 3 $ 个均值和方差，分别对应每个样本的每个特征。如下图所示：
+
+<img src="https://image.zhangxiann.com/20200707103153.png" alt="img" style="zoom:80%;" />
+
+```python
+    batch_size = 3
+    num_features = 3
+    momentum = 0.3
+
+    features_shape = (2, 2)
+
+    feature_map = torch.ones(features_shape)    # 2D
+    feature_maps = torch.stack([feature_map * (i + 1) for i in range(num_features)], dim=0)  # 3D
+    feature_maps_bs = torch.stack([feature_maps for i in range(batch_size)], dim=0)  # 4D
+
+    print("Instance Normalization")
+    print("input data:\n{} shape is {}".format(feature_maps_bs, feature_maps_bs.shape))
+
+    instance_n = nn.InstanceNorm2d(num_features=num_features, momentum=momentum)
+
+    for i in range(1):
+        outputs = instance_n(feature_maps_bs)
+
+        print(outputs)
+```
+
+```python
+Instance Normalization
+input data:
+tensor([[[[1., 1.],
+          [1., 1.]],
+         [[2., 2.],
+          [2., 2.]],
+         [[3., 3.],
+          [3., 3.]]],
+        [[[1., 1.],
+          [1., 1.]],
+         [[2., 2.],
+          [2., 2.]],
+         [[3., 3.],
+          [3., 3.]]],
+        [[[1., 1.],
+          [1., 1.]],
+         [[2., 2.],
+          [2., 2.]],
+         [[3., 3.],
+          [3., 3.]]]]) shape is torch.Size([3, 3, 2, 2])
+tensor([[[[0., 0.],
+          [0., 0.]],
+         [[0., 0.],
+          [0., 0.]],
+         [[0., 0.],
+          [0., 0.]]],
+        [[[0., 0.],
+          [0., 0.]],
+         [[0., 0.],
+          [0., 0.]],
+         [[0., 0.],
+          [0., 0.]]],
+        [[[0., 0.],
+          [0., 0.]],
+         [[0., 0.],
+          [0., 0.]],
+         [[0., 0.],
+          [0., 0.]]]])
+```
+
+## 5.Group Normalization
+
+提出的原因：在小 batch 的样本中，Batch Normalization 估计的值不准。一般用在很大的模型中，这时 batch size 就很小。
+
+思路：数据不够，通道来凑。 每个样本的特征分为几组，每组特征分别计算均值和方差。可以看作是 Layer Normalization 的基础上添加了特征分组。
+
+注意事项：
+
+- 不再有 running_mean 和 running_var
+- $\gamma$ 和 $\beta$ 为逐通道的
+
+```python
+torch.nn.GroupNorm(num_groups, num_channels, eps=1e-05, affine=True)
+```
+
+参数：
+
+- num_groups：特征的分组数量
+- num_channels：特征数，通道数。注意 num_channels 要可以整除 num_groups
+- eps：分母修正项
+- affine：是否需要 affine transform
+
+下面代码中，输入数据的形状是 $B \times C \times 2D_feature$，(2, 4, 3, 3)，表示一个 mini-batch 有 2 个样本，每个样本有 4 个特征，每个特征的维度是 $3 \times 3 $。num_groups 设置为 2，那么就会计算 $2 \times (4 \div 2) $ 个均值和方差，分别对应每个样本的每个特征。
+
+```python
+   batch_size = 2
+    num_features = 4
+    num_groups = 2   
+    features_shape = (2, 2)
+
+    feature_map = torch.ones(features_shape)    # 2D
+    feature_maps = torch.stack([feature_map * (i + 1) for i in range(num_features)], dim=0)  # 3D
+    feature_maps_bs = torch.stack([feature_maps * (i + 1) for i in range(batch_size)], dim=0)  # 4D
+
+    gn = nn.GroupNorm(num_groups, num_features)
+    outputs = gn(feature_maps_bs)
+
+    print("Group Normalization")
+    print(gn.weight.shape)
+    print(outputs[0])
+```
+
+```python
+Group Normalization
+torch.Size([4])
+tensor([[[-1.0000, -1.0000],
+         [-1.0000, -1.0000]],
+        [[ 1.0000,  1.0000],
+         [ 1.0000,  1.0000]],
+        [[-1.0000, -1.0000],
+         [-1.0000, -1.0000]],
+        [[ 1.0000,  1.0000],
+         [ 1.0000,  1.0000]]], grad_fn=<SelectBackward>)
+```
+
+# 20.模型保存与加载
+
+## 1.序列化与反序列化
+
+模型在内存中是以对象的逻辑结构保存的，但是在硬盘中是以二进制流的方式保存的。
+
+- 序列化是指将内存中的数据以二进制序列的方式保存到硬盘中。PyTorch 的模型保存就是序列化。
+- 反序列化是指将硬盘中的二进制序列加载到内存中，得到模型的对象。PyTorch 的模型加载就是反序列化。
+
+## 2.PyTorch 中的模型保存与加载
+
+### 1.torch.save
+
+torch.save(obj, f, pickle_module, pickle_protocol=2, _use_new_zipfile_serialization=False)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128184118226.png" alt="image-20220128184118226" style="zoom:80%;" />
+
+下面是保存 LeNet 的例子。在网络初始化中，把权值都设置为 2020，然后保存模型。
+
+```python
+import torch
+import numpy as np
+import torch.nn as nn
+from common_tools import set_seed
+
+
+class LeNet2(nn.Module):
+    def __init__(self, classes):
+        super(LeNet2, self).__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(3, 6, 5),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(6, 16, 5),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2)
+        )
+        self.classifier = nn.Sequential(
+            nn.Linear(16*5*5, 120),
+            nn.ReLU(),
+            nn.Linear(120, 84),
+            nn.ReLU(),
+            nn.Linear(84, classes)
+        )
+
+    def forward(self, x):
+        x = self.features(x)
+        x = x.view(x.size()[0], -1)
+        x = self.classifier(x)
+        return x
+
+    def initialize(self):
+        for p in self.parameters():
+            p.data.fill_(2020)
+
+
+net = LeNet2(classes=2019)
+
+# "训练"
+print("训练前: ", net.features[0].weight[0, ...])
+net.initialize()
+print("训练后: ", net.features[0].weight[0, ...])
+
+path_model = "./model.pkl"
+path_state_dict = "./model_state_dict.pkl"
+
+# 保存整个模型
+torch.save(net, path_model)
+
+# 保存模型参数
+net_state_dict = net.state_dict()
+torch.save(net_state_dict, path_state_dict)
+```
+
+### 2.torch.load
+
+torch.load(f, map_location=None, pickle_module, **pickle_load_args)
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128184218745.png" alt="image-20220128184218745" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128184227889.png" alt="image-20220128184227889" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128184236132.png" alt="image-20220128184236132" style="zoom:80%;" />
+
+### 3.模型的断点续训练
+
+在训练过程中，可能由于某种意外原因如断点等导致训练终止，这时需要重新开始训练。断点续练是在训练过程中每隔一定次数的 epoch 就保存**模型的参数和优化器的参数**，这样如果意外终止训练了，下次就可以重新加载最新的**模型参数和优化器的参数**，在这个基础上继续训练。
+
+下面的代码中，每隔 5 个 epoch 就保存一次，保存的是一个 dict，包括模型参数、优化器的参数、epoch。然后在 epoch 大于 5 时，就`break`模拟训练意外终止。关键代码如下：
+
+```python
+    if (epoch+1) % checkpoint_interval == 0:
+
+        checkpoint = {"model_state_dict": net.state_dict(),
+                      "optimizer_state_dict": optimizer.state_dict(),
+                      "epoch": epoch}
+        path_checkpoint = "./checkpoint_{}_epoch.pkl".format(epoch)
+        torch.save(checkpoint, path_checkpoint)
+```
+
+在 epoch 大于 5 时，就`break`模拟训练意外终止
+
+```python
+    if epoch > 5:
+        print("训练意外中断...")
+        break
+```
+
+断点续训练的恢复代码如下：
+
+```python
+path_checkpoint = "./checkpoint_4_epoch.pkl"
+checkpoint = torch.load(path_checkpoint)
+
+net.load_state_dict(checkpoint['model_state_dict'])
+
+optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+
+start_epoch = checkpoint['epoch']
+
+scheduler.last_epoch = start_epoch
+```
+
+需要注意的是，还要设置`scheduler.last_epoch`参数为保存的 epoch。模型训练的起始 epoch 也要修改为保存的 epoch。
+
+# 21.模型 Finetune
+
+迁移学习：把在 source domain 任务上的学习到的模型应用到 target domain 的任务。
+
+Finetune 就是一种迁移学习的方法。比如做人脸识别，可以把 ImageNet 看作 source domain，人脸数据集看作 target domain。通常来说 source domain 要比 target domain 大得多。可以利用 ImageNet 训练好的网络应用到人脸识别中。
+
+对于一个模型，通常可以分为前面的 feature extractor (卷积层)和后面的 classifier，在 Finetune 时，通常不改变 feature extractor 的权值，也就是冻结卷积层；并且改变最后一个全连接层的输出来适应目标任务，训练后面 classifier 的权值，这就是 Finetune。通常 target domain 的数据比较小，不足以训练全部参数，容易导致欠拟合，因此不改变 feature extractor 的权值。
+
+Finetune 步骤如下：
+
+1. 获取预训练模型的参数
+2. 使用`load_state_dict()`把参数加载到模型中
+3. 修改输出层
+4. 固定 feature extractor 的参数。这部分通常有 2 种做法：
+   1. 固定卷积层的预训练参数。可以设置`requires_grad=False`或者`lr=0`
+   2. 可以通过`params_group`给 feature extractor 设置一个较小的学习率
+
+下面微调 ResNet18，用于蜜蜂和蚂蚁图片的二分类。训练集每类数据各 120 张，验证集每类数据各 70 张图片
+
+## 1.不使用 Finetune
+
+第一次我们首先不使用 Finetune，而是从零开始训练模型，这时只需要修改全连接层即可：
+
+```python
+# 首先拿到 fc 层的输入个数
+num_ftrs = resnet18_ft.fc.in_features
+# 然后构造新的 fc 层替换原来的 fc 层
+resnet18_ft.fc = nn.Linear(num_ftrs, classes)
+```
+
+输出：
+
+```python
+use device :cpu
+Training:Epoch[000/025] Iteration[010/016] Loss: 0.7192 Acc:47.50%
+Valid:     Epoch[000/025] Iteration[010/010] Loss: 0.6885 Acc:51.63%
+Training:Epoch[001/025] Iteration[010/016] Loss: 0.6568 Acc:60.62%
+Valid:     Epoch[001/025] Iteration[010/010] Loss: 0.6360 Acc:59.48%
+Training:Epoch[002/025] Iteration[010/016] Loss: 0.6411 Acc:60.62%
+Valid:     Epoch[002/025] Iteration[010/010] Loss: 0.6191 Acc:66.01%
+Training:Epoch[003/025] Iteration[010/016] Loss: 0.5765 Acc:71.25%
+Valid:     Epoch[003/025] Iteration[010/010] Loss: 0.6179 Acc:67.32%
+Training:Epoch[004/025] Iteration[010/016] Loss: 0.6074 Acc:67.50%
+Valid:     Epoch[004/025] Iteration[010/010] Loss: 0.6251 Acc:62.75%
+Training:Epoch[005/025] Iteration[010/016] Loss: 0.6177 Acc:58.75%
+Valid:     Epoch[005/025] Iteration[010/010] Loss: 0.6541 Acc:64.71%
+Training:Epoch[006/025] Iteration[010/016] Loss: 0.6103 Acc:65.62%
+Valid:     Epoch[006/025] Iteration[010/010] Loss: 0.7100 Acc:60.78%
+Training:Epoch[007/025] Iteration[010/016] Loss: 0.6560 Acc:60.62%
+Valid:     Epoch[007/025] Iteration[010/010] Loss: 0.6019 Acc:67.32%
+Training:Epoch[008/025] Iteration[010/016] Loss: 0.5454 Acc:70.62%
+Valid:     Epoch[008/025] Iteration[010/010] Loss: 0.5761 Acc:71.90%
+Training:Epoch[009/025] Iteration[010/016] Loss: 0.5499 Acc:71.25%
+Valid:     Epoch[009/025] Iteration[010/010] Loss: 0.5598 Acc:71.90%
+Training:Epoch[010/025] Iteration[010/016] Loss: 0.5466 Acc:69.38%
+Valid:     Epoch[010/025] Iteration[010/010] Loss: 0.5535 Acc:70.59%
+Training:Epoch[011/025] Iteration[010/016] Loss: 0.5310 Acc:68.12%
+Valid:     Epoch[011/025] Iteration[010/010] Loss: 0.5700 Acc:70.59%
+Training:Epoch[012/025] Iteration[010/016] Loss: 0.5024 Acc:72.50%
+Valid:     Epoch[012/025] Iteration[010/010] Loss: 0.5537 Acc:71.90%
+Training:Epoch[013/025] Iteration[010/016] Loss: 0.5542 Acc:71.25%
+Valid:     Epoch[013/025] Iteration[010/010] Loss: 0.5836 Acc:71.90%
+Training:Epoch[014/025] Iteration[010/016] Loss: 0.5458 Acc:71.88%
+Valid:     Epoch[014/025] Iteration[010/010] Loss: 0.5714 Acc:71.24%
+Training:Epoch[015/025] Iteration[010/016] Loss: 0.5331 Acc:72.50%
+Valid:     Epoch[015/025] Iteration[010/010] Loss: 0.5613 Acc:73.20%
+Training:Epoch[016/025] Iteration[010/016] Loss: 0.5296 Acc:71.25%
+Valid:     Epoch[016/025] Iteration[010/010] Loss: 0.5646 Acc:71.24%
+Training:Epoch[017/025] Iteration[010/016] Loss: 0.5039 Acc:75.00%
+Valid:     Epoch[017/025] Iteration[010/010] Loss: 0.5643 Acc:71.24%
+Training:Epoch[018/025] Iteration[010/016] Loss: 0.5351 Acc:73.75%
+Valid:     Epoch[018/025] Iteration[010/010] Loss: 0.5745 Acc:71.24%
+Training:Epoch[019/025] Iteration[010/016] Loss: 0.5441 Acc:69.38%
+Valid:     Epoch[019/025] Iteration[010/010] Loss: 0.5703 Acc:71.90%
+Training:Epoch[020/025] Iteration[010/016] Loss: 0.5582 Acc:69.38%
+Valid:     Epoch[020/025] Iteration[010/010] Loss: 0.5759 Acc:71.90%
+Training:Epoch[021/025] Iteration[010/016] Loss: 0.5219 Acc:73.75%
+Valid:     Epoch[021/025] Iteration[010/010] Loss: 0.5689 Acc:72.55%
+Training:Epoch[022/025] Iteration[010/016] Loss: 0.5670 Acc:70.62%
+Valid:     Epoch[022/025] Iteration[010/010] Loss: 0.6052 Acc:69.28%
+Training:Epoch[023/025] Iteration[010/016] Loss: 0.5725 Acc:65.62%
+Valid:     Epoch[023/025] Iteration[010/010] Loss: 0.6047 Acc:68.63%
+Training:Epoch[024/025] Iteration[010/016] Loss: 0.5761 Acc:66.25%
+Valid:     Epoch[024/025] Iteration[010/010] Loss: 0.5923 Acc:70.59%
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128184725643.png" alt="image-20220128184725643" style="zoom:80%;" />
+
+## 2.使用 Finetune
+
+```python
+#然后我们把下载的模型参数加载到模型中：
+path_pretrained_model = enviroments.resnet18_path
+state_dict_load = torch.load(path_pretrained_model)
+resnet18_ft.load_state_dict(state_dict_load)
+```
+
+### 1.不冻结卷积层
+
+这时我们不冻结卷积层，所有层都是用相同的学习率，输出如下：
+
+```python
+use device :cpu
+Training:Epoch[000/025] Iteration[010/016] Loss: 0.6299 Acc:65.62%
+Valid:     Epoch[000/025] Iteration[010/010] Loss: 0.3387 Acc:90.20%
+Training:Epoch[001/025] Iteration[010/016] Loss: 0.3122 Acc:90.00%
+Valid:     Epoch[001/025] Iteration[010/010] Loss: 0.2150 Acc:94.12%
+Training:Epoch[002/025] Iteration[010/016] Loss: 0.2748 Acc:85.62%
+Valid:     Epoch[002/025] Iteration[010/010] Loss: 0.2423 Acc:91.50%
+Training:Epoch[003/025] Iteration[010/016] Loss: 0.1440 Acc:94.38%
+Valid:     Epoch[003/025] Iteration[010/010] Loss: 0.1666 Acc:95.42%
+Training:Epoch[004/025] Iteration[010/016] Loss: 0.1983 Acc:92.50%
+Valid:     Epoch[004/025] Iteration[010/010] Loss: 0.1809 Acc:94.77%
+Training:Epoch[005/025] Iteration[010/016] Loss: 0.1840 Acc:92.50%
+Valid:     Epoch[005/025] Iteration[010/010] Loss: 0.2437 Acc:91.50%
+Training:Epoch[006/025] Iteration[010/016] Loss: 0.1921 Acc:93.12%
+Valid:     Epoch[006/025] Iteration[010/010] Loss: 0.2014 Acc:95.42%
+Training:Epoch[007/025] Iteration[010/016] Loss: 0.1311 Acc:93.12%
+Valid:     Epoch[007/025] Iteration[010/010] Loss: 0.1890 Acc:96.08%
+Training:Epoch[008/025] Iteration[010/016] Loss: 0.1395 Acc:94.38%
+Valid:     Epoch[008/025] Iteration[010/010] Loss: 0.1907 Acc:95.42%
+Training:Epoch[009/025] Iteration[010/016] Loss: 0.1390 Acc:93.75%
+Valid:     Epoch[009/025] Iteration[010/010] Loss: 0.1933 Acc:95.42%
+Training:Epoch[010/025] Iteration[010/016] Loss: 0.1065 Acc:96.88%
+Valid:     Epoch[010/025] Iteration[010/010] Loss: 0.1865 Acc:95.42%
+Training:Epoch[011/025] Iteration[010/016] Loss: 0.0845 Acc:98.12%
+Valid:     Epoch[011/025] Iteration[010/010] Loss: 0.1851 Acc:96.08%
+Training:Epoch[012/025] Iteration[010/016] Loss: 0.1068 Acc:95.62%
+Valid:     Epoch[012/025] Iteration[010/010] Loss: 0.1862 Acc:95.42%
+Training:Epoch[013/025] Iteration[010/016] Loss: 0.0986 Acc:96.25%
+Valid:     Epoch[013/025] Iteration[010/010] Loss: 0.1803 Acc:96.73%
+Training:Epoch[014/025] Iteration[010/016] Loss: 0.1083 Acc:96.88%
+Valid:     Epoch[014/025] Iteration[010/010] Loss: 0.1867 Acc:96.08%
+Training:Epoch[015/025] Iteration[010/016] Loss: 0.0683 Acc:98.12%
+Valid:     Epoch[015/025] Iteration[010/010] Loss: 0.1863 Acc:95.42%
+Training:Epoch[016/025] Iteration[010/016] Loss: 0.1271 Acc:96.25%
+Valid:     Epoch[016/025] Iteration[010/010] Loss: 0.1842 Acc:94.77%
+Training:Epoch[017/025] Iteration[010/016] Loss: 0.0857 Acc:97.50%
+Valid:     Epoch[017/025] Iteration[010/010] Loss: 0.1776 Acc:96.08%
+Training:Epoch[018/025] Iteration[010/016] Loss: 0.1338 Acc:94.38%
+Valid:     Epoch[018/025] Iteration[010/010] Loss: 0.1736 Acc:96.08%
+Training:Epoch[019/025] Iteration[010/016] Loss: 0.1381 Acc:95.62%
+Valid:     Epoch[019/025] Iteration[010/010] Loss: 0.1852 Acc:93.46%
+Training:Epoch[020/025] Iteration[010/016] Loss: 0.0936 Acc:96.25%
+Valid:     Epoch[020/025] Iteration[010/010] Loss: 0.1820 Acc:95.42%
+Training:Epoch[021/025] Iteration[010/016] Loss: 0.1818 Acc:93.75%
+Valid:     Epoch[021/025] Iteration[010/010] Loss: 0.1949 Acc:92.81%
+Training:Epoch[022/025] Iteration[010/016] Loss: 0.1525 Acc:93.75%
+Valid:     Epoch[022/025] Iteration[010/010] Loss: 0.1816 Acc:95.42%
+Training:Epoch[023/025] Iteration[010/016] Loss: 0.1942 Acc:93.12%
+Valid:     Epoch[023/025] Iteration[010/010] Loss: 0.1744 Acc:96.08%
+Training:Epoch[024/025] Iteration[010/016] Loss: 0.1268 Acc:96.25%
+Valid:     Epoch[024/025] Iteration[010/010] Loss: 0.1808 Acc:96.08%
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128184820639.png" alt="image-20220128184820639" style="zoom:80%;" />
+
+### 2.冻结卷积层
+
+1.设置`requires_grad=False`
+
+这里先冻结所有参数，然后再替换全连接层，相当于冻结了卷积层的参数：
+
+```python
+for param in resnet18_ft.parameters():
+    param.requires_grad = False
+    # 首先拿到 fc 层的输入个数
+num_ftrs = resnet18_ft.fc.in_features
+# 然后构造新的 fc 层替换原来的 fc 层
+resnet18_ft.fc = nn.Linear(num_ftrs, classes)
+```
+
+2.设置学习率为 0
+
+这里把卷积层的学习率设置为 0，需要在优化器里设置不同的学习率。首先获取全连接层参数的地址，然后使用 filter 过滤不属于全连接层的参数，也就是保留卷积层的参数；接着设置优化器的分组学习率，传入一个 list，包含 2 个元素，每个元素是字典，对应 2 个参数组。其中卷积层的学习率设置为 全连接层的 0.1 倍。
+
+```python
+# 首先获取全连接层参数的地址
+fc_params_id = list(map(id, resnet18_ft.fc.parameters()))     # 返回的是parameters的 内存地址
+# 然后使用 filter 过滤不属于全连接层的参数，也就是保留卷积层的参数
+base_params = filter(lambda p: id(p) not in fc_params_id, resnet18_ft.parameters())
+# 设置优化器的分组学习率，传入一个 list，包含 2 个元素，每个元素是字典，对应 2 个参数组
+optimizer = optim.SGD([{'params': base_params, 'lr': 0}, {'params': resnet18_ft.fc.parameters(), 'lr': LR}], momentum=0.9)
+```
+
+### 3.使用分组学习率
+
+这里不冻结卷积层，而是对卷积层使用较小的学习率，对全连接层使用较大的学习率，需要在优化器里设置不同的学习率。首先获取全连接层参数的地址，然后使用 filter 过滤不属于全连接层的参数，也就是保留卷积层的参数；接着设置优化器的分组学习率，传入一个 list，包含 2 个元素，每个元素是字典，对应 2 个参数组。其中卷积层的学习率设置为 全连接层的 0.1 倍。
+
+```python
+# 首先获取全连接层参数的地址
+fc_params_id = list(map(id, resnet18_ft.fc.parameters()))     # 返回的是parameters的 内存地址
+# 然后使用 filter 过滤不属于全连接层的参数，也就是保留卷积层的参数
+base_params = filter(lambda p: id(p) not in fc_params_id, resnet18_ft.parameters())
+# 设置优化器的分组学习率，传入一个 list，包含 2 个元素，每个元素是字典，对应 2 个参数组
+optimizer = optim.SGD([{'params': base_params, 'lr': LR*0}, {'params': resnet18_ft.fc.parameters(), 'lr': LR}], momentum=0.9)
+```
+
+# 22.使用 GPU 训练模型
+
+在数据运算时，两个数据进行运算，那么它们必须同时存放在同一个设备，要么同时是 CPU，要么同时是 GPU。而且数据和模型都要在同一个设备上。数据和模型可以使用`to()`方法从一个设备转移到另一个设备。而数据的`to()`方法还可以转换数据类型。
+
+* 从 CPU 到 GPU
+
+  ```python
+  device = torch.device("cuda")
+  tensor = tensor.to(device)
+  module.to(device)
+  ```
+
+* 从 GPU 到 CPU
+
+  ```python
+  device = torch.device(cpu)
+  tensor = tensor.to("cpu")
+  module.to("cpu")
+  ```
+
+  
+
+`tensor`和`module`的 `to()`方法的区别是：`tensor.to()`执行的不是 inplace 操作，因此需要赋值；`module.to()`执行的是 inplace 操作。
+
+## tensor.to()` 和 `module.to()
+
+首先导入库，获取 GPU 的 device
+
+```python
+import torch
+import torch.nn as nn
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+```
+
+下面的代码是执行`to()`方法
+
+```python
+x_cpu = torch.ones((3, 3))
+print("x_cpu:\ndevice: {} is_cuda: {} id: {}".format(x_cpu.device, x_cpu.is_cuda, id(x_cpu)))
+
+x_gpu = x_cpu.to(device)
+print("x_gpu:\ndevice: {} is_cuda: {} id: {}".format(x_gpu.device, x_gpu.is_cuda, id(x_gpu)))
+
+net = nn.Sequential(nn.Linear(3, 3))
+
+print("\nid:{} is_cuda: {}".format(id(net), next(net.parameters()).is_cuda))
+
+net.to(device)
+print("\nid:{} is_cuda: {}".format(id(net), next(net.parameters()).is_cuda))
+```
+
+输出如下：
+
+```python
+x_cpu:
+device: cpu is_cuda: False id: 1415020820304
+x_gpu:
+device: cpu is_cuda: True id: 2700061800153
+
+id:2325748158192 is_cuda: False
+id:2325748158192 is_cuda: True
+```
+
+可以看到`Tensor`的`to()`方法不是 inplace 操作，`x_cpu`和`x_gpu`的内存地址不一样,`Module`的`to()`方法是 inplace 操作，内存地址一样。
+
+## `torch.cuda`常用方法
+
+* torch.cuda.device_count()：返回当前可见可用的 GPU 数量
+* torch.cuda.get_device_name()：获取 GPU 名称
+* torch.cuda.manual_seed()：为当前 GPU 设置随机种子
+* torch.cuda.manual_seed_all()：为所有可见 GPU 设置随机种子
+* torch.cuda.set_device()：设置主 GPU 为哪一个物理 GPU，此方法不推荐使用
+* os.environ.setdefault("CUDA_VISIBLE_DEVICES", "2", "3")：设置可见 GPU
+
+在 PyTorch 中，有物理 GPU 可以逻辑 GPU 之分，可以设置它们之间的对应关系。
+
+<img src="https://image.zhangxiann.com/20200707194809.png" alt="img" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128185601787.png" alt="image-20220128185601787" style="zoom:80%;" />
+
+## 多 GPU 的分发并行
+
+torch.nn.DataParallel(module, device_ids=None, output_device=None, dim=0)
+
+功能：包装模型，实现分发并行机制。可以把数据平均分发到各个 GPU 上，每个 GPU 实际的数据量为 $\frac{batch_size}{GPU 数量}$，实现并行计算。
+
+主要参数：
+
+- module：需要包装分发的模型
+- device_ids：可分发的 GPU，默认分发到所有可见可用的 GPU
+- output_device：结果输出设备
+
+需要注意的是：使用 `DataParallel` 时，`device` 要指定某个 GPU 为 主 GPU，否则会报错。
+
+这是因为，使用多 GPU 需要有一个主 GPU，来把每个 batch 的数据分发到每个 GPU，并从每个 GPU 收集计算好的结果。如果不指定主 GPU，那么数据就直接分发到每个 GPU，会造成有些数据在某个 GPU，而另一部分数据在其他 GPU，计算出错。
+
+下面的代码设置两个可见 GPU，batch_size 为 2，那么每个 GPU 每个 batch 拿到的数据数量为 8，在模型的前向传播中打印数据的数量。
+
+```python
+    # 设置 2 个可见 GPU
+    gpu_list = [0,1]
+    gpu_list_str = ','.join(map(str, gpu_list))
+    os.environ.setdefault("CUDA_VISIBLE_DEVICES", gpu_list_str)
+    # 这里注意，需要指定一个 GPU 作为主 GPU。
+    # 否则会报错：module must have its parameters and buffers on device cuda:1 (device_ids[0]) but found one of them on device: cuda:2
+    # 参考：https://stackoverflow.com/questions/59249563/runtimeerror-module-must-have-its-parameters-and-buffers-on-device-cuda1-devi
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+    batch_size = 16
+
+    # data
+    inputs = torch.randn(batch_size, 3)
+    labels = torch.randn(batch_size, 3)
+
+    inputs, labels = inputs.to(device), labels.to(device)
+
+    # model
+    net = FooNet(neural_num=3, layers=3)
+    net = nn.DataParallel(net)
+    net.to(device)
+
+    # training
+    for epoch in range(1):
+
+        outputs = net(inputs)
+
+        print("model outputs.size: {}".format(outputs.size()))
+
+    print("CUDA_VISIBLE_DEVICES :{}".format(os.environ["CUDA_VISIBLE_DEVICES"]))
+    print("device_count :{}".format(torch.cuda.device_count()))
+```
+
+输出如下：
+
+```python
+batch size in forward: 8
+model outputs.size: torch.Size([16, 3])
+CUDA_VISIBLE_DEVICES :0,1
+device_count :2
+```
+
+## 根据 GPU 剩余内存来排序
+
+```python
+    def get_gpu_memory():
+        import platform
+        if 'Windows' != platform.system():
+            import os
+            os.system('nvidia-smi -q -d Memory | grep -A4 GPU | grep Free > tmp.txt')
+            memory_gpu = [int(x.split()[2]) for x in open('tmp.txt', 'r').readlines()]
+            os.system('rm tmp.txt')
+        else:
+            memory_gpu = False
+            print("显存计算功能暂不支持windows操作系统")
+        return memory_gpu
+
+
+    gpu_memory = get_gpu_memory()
+    if not gpu_memory:
+        print("\ngpu free memory: {}".format(gpu_memory))
+        gpu_list = np.argsort(gpu_memory)[::-1]
+
+        gpu_list_str = ','.join(map(str, gpu_list))
+        os.environ.setdefault("CUDA_VISIBLE_DEVICES", gpu_list_str)
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+```
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128185758716.png" alt="image-20220128185758716" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128185820364.png" alt="image-20220128185820364" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128185838016.png" alt="image-20220128185838016" style="zoom:80%;" />
+
+## 提高 GPU 的利用率
+
+`nvidia-smi`命令查看可以 GPU 的利用率，如下图所示。
+
+<img src="https://image.zhangxiann.com/20200820120513.png" alt="img" style="zoom:80%;" />
+
+上面的截图中，有两张显卡（GPU），其中**上半部分显示的是显卡的信息**，**下半部分显示的是每张显卡运行的进程**。可以看到编号为 0 的 GPU 运行的是 PID 为 14383 进程。`Memory Usage`表示显存的使用率，编号为 0 的 GPU 使用了 `16555 MB` 显存，显存的利用率大概是70% 左右。`Volatile GPU-Util`表示计算 GPU 实际运算能力的利用率，编号为 0 的 GPU 只有 27% 的使用率。
+
+虽然使用 GPU 可以加速训练模型，但是如果GPU 的 `Memory Usage` 和 `Volatile GPU-Util` 太低，表示并没有充分利用 GPU。
+
+因此，使用 GPU 训练模型，需要尽量提高 GPU 的 `Memory Usage` 和 `Volatile GPU-Util` 这两个指标，可以更进一步加速你的训练过程。
+
+下面谈谈如何提高这两个指标。
+
+* Memory Usage
+
+  这个指标是由数据量主要是由模型大小，以及数据量的大小决定的。
+
+  模型大小是由网络的参数和网络结构决定的，模型越大，训练反而越慢。
+
+  我们主要调整的是每个 batch 训练的数据量的大小，也就是 **batch_size**。
+
+  在模型结构固定的情况下，尽量将`batch size`设置得比较大，充分利用 GPU 的内存。
+
+* Volatile GPU-Util
+
+  上面设置比较大的 `batch size`可以提高 GPU 的内存使用率，却不一定能提高 GPU 运算单元的使用率。
+
+  从前面可以看到，我们的数据首先读取到 CPU 中的，并在循环训练的时候，通过`tensor.to()`方法从 CPU 加载到 CPU 中
+
+  
+
+如果`batch size`得比较大，那么在 `Dataset`和 `DataLoader` ，CPU 处理一个 batch 的数据就会很慢，这时你会发现`Volatile GPU-Util`的值会在 `0%，20%，70%，95%，0%` 之间不断变化。
+
+> `nvidia-smi`命令查看可以 GPU 的利用率，但不能动态刷新显示。如果你想每隔一秒刷新显示 GPU 信息，可以使用`watch -n 1 nvidia-smi` 。
+
+其实这是因为 GPU 处理数据非常快，而 CPU 处理数据较慢。GPU 每接收到一个 batch 的数据，使用率就跳到逐渐升高，处理完这个 batch 的数据后，使用率又逐渐降低，等到 CPU 把下一个 batch 的数据传过来。
+
+**解决方法**是：设置 `Dataloader`的两个参数：
+
+* num_workers：默认只使用一个 CPU 读取和处理数据。可以设置为 4、8、16 等参数。但线程数**并不是越大越好**。因为，多核处理需要把数据分发到每个 CPU，处理完成后需要从多个 CPU 收集数据，这个过程也是需要时间的。如果设置`num_workers`过大，分发和收集数据等操作占用了太多时间，反而会降低效率。
+* pin_memory：如果内存较大，**建议设置为 True**。
+  - 设置为 True，表示把数据直接映射到 GPU 的相关内存块上，省掉了一点数据传输时间。
+  - 设置为 False，表示从 CPU 传入到缓存 RAM 里面，再给传输到 GPU 上。
+
+## GPU 相关的报错
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128190230095.png" alt="image-20220128190230095" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128190241485.png" alt="image-20220128190241485" style="zoom:80%;" />
+
+# 23.图像分类简述
+
+## 模型概览
+
+在`torchvision.model`中，有很多封装好的模型。
+
+<img src="https://image.zhangxiann.com/1594134006068.png" alt="img" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128191047689.png" alt="image-20220128191047689" style="zoom:80%;" />
+
+## ResNet18 使用
+
+以 `ResNet 18` 为例。
+
+首先加载训练好的模型参数：
+
+```python
+resnet18 = models.resnet18()
+
+# 修改全连接层的输出
+num_ftrs = resnet18.fc.in_features
+resnet18.fc = nn.Linear(num_ftrs, 2)
+
+# 加载模型参数
+checkpoint = torch.load(m_path)
+resnet18.load_state_dict(checkpoint['model_state_dict'])
+```
+
+然后比较重要的是把模型放到 GPU 上，并且转换到`eval`模式：
+
+```python
+resnet18.to(device)
+resnet18.eval()
+```
+
+在inference 时，主要流程如下：
+
+- 代码要放在`with torch.no_grad():`下。`torch.no_grad()`会关闭反向传播，可以减少内存、加快速度。
+
+- 根据路径读取图片，把图片转换为 tensor，然后使用`unsqueeze_(0)`方法把形状扩大为$B \times C \times H \times W$，再把 tensor 放到 GPU 上 
+
+- 模型的输出数据`outputs`的形状是$1 \times 2$，表示 `batch_size` 为 1，分类数量为 2。`torch.max(outputs,0)`是返回`outputs`中**每一列**最大的元素和索引，`torch.max(outputs,1)`是返回`outputs`中**每一行**最大的元素和索引。
+
+  这里使用`_, pred_int = torch.max(outputs.data, 1)`返回最大元素的索引，然后根据索引获得 label：`pred_str = classes[int(pred_int)]`。
+
+关键代码如下：
+
+```python
+    with torch.no_grad():
+        for idx, img_name in enumerate(img_names):
+
+            path_img = os.path.join(img_dir, img_name)
+
+            # step 1/4 : path --> img
+            img_rgb = Image.open(path_img).convert('RGB')
+
+            # step 2/4 : img --> tensor
+            img_tensor = img_transform(img_rgb, inference_transform)
+            img_tensor.unsqueeze_(0)
+            img_tensor = img_tensor.to(device)
+
+            # step 3/4 : tensor --> vector
+            outputs = resnet18(img_tensor)
+
+            # step 4/4 : get label
+            _, pred_int = torch.max(outputs.data, 1)
+            pred_str = classes[int(pred_int)]
+```
+
+全部代码如下所示：
+
+```python
+import os
+import time
+import torch.nn as nn
+import torch
+import torchvision.transforms as transforms
+from PIL import Image
+from matplotlib import pyplot as plt
+import torchvision.models as models
+import enviroments
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
+
+# config
+vis = True
+# vis = False
+vis_row = 4
+
+norm_mean = [0.485, 0.456, 0.406]
+norm_std = [0.229, 0.224, 0.225]
+
+inference_transform = transforms.Compose([
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    transforms.ToTensor(),
+    transforms.Normalize(norm_mean, norm_std),
+])
+
+classes = ["ants", "bees"]
+
+
+def img_transform(img_rgb, transform=None):
+    """
+    将数据转换为模型读取的形式
+    :param img_rgb: PIL Image
+    :param transform: torchvision.transform
+    :return: tensor
+    """
+
+    if transform is None:
+        raise ValueError("找不到transform！必须有transform对img进行处理")
+
+    img_t = transform(img_rgb)
+    return img_t
+
+
+def get_img_name(img_dir, format="jpg"):
+    """
+    获取文件夹下format格式的文件名
+    :param img_dir: str
+    :param format: str
+    :return: list
+    """
+    file_names = os.listdir(img_dir)
+    # 使用 list(filter(lambda())) 筛选出 jpg 后缀的文件
+    img_names = list(filter(lambda x: x.endswith(format), file_names))
+
+    if len(img_names) < 1:
+        raise ValueError("{}下找不到{}格式数据".format(img_dir, format))
+    return img_names
+
+
+def get_model(m_path, vis_model=False):
+
+    resnet18 = models.resnet18()
+
+    # 修改全连接层的输出
+    num_ftrs = resnet18.fc.in_features
+    resnet18.fc = nn.Linear(num_ftrs, 2)
+
+    # 加载模型参数
+    checkpoint = torch.load(m_path)
+    resnet18.load_state_dict(checkpoint['model_state_dict'])
+
+
+    if vis_model:
+        from torchsummary import summary
+        summary(resnet18, input_size=(3, 224, 224), device="cpu")
+
+    return resnet18
+
+
+if __name__ == "__main__":
+
+    img_dir = os.path.join(enviroments.hymenoptera_data_dir,"val/bees")
+    model_path = "./checkpoint_14_epoch.pkl"
+    time_total = 0
+    img_list, img_pred = list(), list()
+
+    # 1. data
+    img_names = get_img_name(img_dir)
+    num_img = len(img_names)
+
+    # 2. model
+    resnet18 = get_model(model_path, True)
+    resnet18.to(device)
+    resnet18.eval()
+
+    with torch.no_grad():
+        for idx, img_name in enumerate(img_names):
+
+            path_img = os.path.join(img_dir, img_name)
+
+            # step 1/4 : path --> img
+            img_rgb = Image.open(path_img).convert('RGB')
+
+            # step 2/4 : img --> tensor
+            img_tensor = img_transform(img_rgb, inference_transform)
+            img_tensor.unsqueeze_(0)
+            img_tensor = img_tensor.to(device)
+
+            # step 3/4 : tensor --> vector
+            time_tic = time.time()
+            outputs = resnet18(img_tensor)
+            time_toc = time.time()
+
+            # step 4/4 : visualization
+            _, pred_int = torch.max(outputs.data, 1)
+            pred_str = classes[int(pred_int)]
+
+            if vis:
+                img_list.append(img_rgb)
+                img_pred.append(pred_str)
+
+                if (idx+1) % (vis_row*vis_row) == 0 or num_img == idx+1:
+                    for i in range(len(img_list)):
+                        plt.subplot(vis_row, vis_row, i+1).imshow(img_list[i])
+                        plt.title("predict:{}".format(img_pred[i]))
+                    plt.show()
+                    plt.close()
+                    img_list, img_pred = list(), list()
+
+            time_s = time_toc-time_tic
+            time_total += time_s
+
+            print('{:d}/{:d}: {} {:.3f}s '.format(idx + 1, num_img, img_name, time_s))
+
+    print("\ndevice:{} total time:{:.1f}s mean:{:.3f}s".
+          format(device, time_total, time_total/num_img))
+    if torch.cuda.is_available():
+        print("GPU name:{}".format(torch.cuda.get_device_name()))
+```
+
+总结一下 inference 阶段需要注意的事项：
+
+- 确保 model 处于 eval 状态，而非 trainning 状态
+- 设置 torch.no_grad()，减少内存消耗，加快运算速度
+- 数据预处理需要保持一致，比如 RGB 或者 rBGR
+
+# 24.目标检测简介
+
+目标检测是判断目标在图像中的位置，有两个要素：
+
+- 分类：分类向量$P*{0}, P*{1}, P_{2}...$，shape 为$[N, c+1]$
+- 回归：回归边界框$[x*{1}, x*{2}, y*{1}, y*{2}]$，shape 为$[n, 4]$
+
+下面代码是加载预训练好的`FasterRCNN_ResNet50_fpn`，这个模型在是 COCO 模型上进行训练的，有 91 种类别。这里图片不再是`BCHW`的形状，而是一个`list`，每个元素是图片。输出也是一个 list，每个元素是一个 dict，每个 dict 包含三个元素：boxes、scores、labels，每个元素都是 list，因为一张图片中可能包含多个目标。接着是绘制框的代码，`scores`的的某个元素小于某个阈值，则不绘制这个框。
+
+```python
+import os
+import time
+import torch.nn as nn
+import torch
+import numpy as np
+import torchvision.transforms as transforms
+import torchvision
+from PIL import Image
+from matplotlib import pyplot as plt
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
+# classes_coco
+COCO_INSTANCE_CATEGORY_NAMES = [
+    '__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+    'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+    'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+    'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+    'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+    'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+    'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl',
+    'banana', 'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza',
+    'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table',
+    'N/A', 'N/A', 'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+    'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book',
+    'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'
+]
+
+
+if __name__ == "__main__":
+
+    path_img = os.path.join(BASE_DIR, "demo_img1.png")
+    # path_img = os.path.join(BASE_DIR, "demo_img2.png")
+
+    # config
+    preprocess = transforms.Compose([
+        transforms.ToTensor(),
+    ])
+
+    # 1. load data & model
+    input_image = Image.open(path_img).convert("RGB")
+    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+    model.eval()
+
+    # 2. preprocess
+    img_chw = preprocess(input_image)
+
+    # 3. to device
+    if torch.cuda.is_available():
+        img_chw = img_chw.to('cuda')
+        model.to('cuda')
+
+    # 4. forward
+    # 这里图片不再是 BCHW 的形状，而是一个list，每个元素是图片
+    input_list = [img_chw]
+    with torch.no_grad():
+        tic = time.time()
+        print("input img tensor shape:{}".format(input_list[0].shape))
+        output_list = model(input_list)
+        # 输出也是一个 list，每个元素是一个 dict
+        output_dict = output_list[0]
+        print("pass: {:.3f}s".format(time.time() - tic))
+        for k, v in output_dict.items():
+            print("key:{}, value:{}".format(k, v))
+
+    # 5. visualization
+    out_boxes = output_dict["boxes"].cpu()
+    out_scores = output_dict["scores"].cpu()
+    out_labels = output_dict["labels"].cpu()
+
+    fig, ax = plt.subplots(figsize=(12, 12))
+    ax.imshow(input_image, aspect='equal')
+
+    num_boxes = out_boxes.shape[0]
+    # 这里最多绘制 40 个框
+    max_vis = 40
+    thres = 0.5
+
+    for idx in range(0, min(num_boxes, max_vis)):
+
+        score = out_scores[idx].numpy()
+        bbox = out_boxes[idx].numpy()
+        class_name = COCO_INSTANCE_CATEGORY_NAMES[out_labels[idx]]
+        # 如果分数小于这个阈值，则不绘制
+        if score < thres:
+            continue
+
+        ax.add_patch(plt.Rectangle((bbox[0], bbox[1]), bbox[2] - bbox[0], bbox[3] - bbox[1], fill=False,
+                                   edgecolor='red', linewidth=3.5))
+        ax.text(bbox[0], bbox[1] - 2, '{:s} {:.3f}'.format(class_name, score), bbox=dict(facecolor='blue', alpha=0.5),
+                fontsize=14, color='white')
+    plt.show()
+    plt.close()
+
+
+
+    # appendix
+    classes_pascal_voc = ['__background__',
+                       'aeroplane', 'bicycle', 'bird', 'boat',
+                       'bottle', 'bus', 'car', 'cat', 'chair',
+                       'cow', 'diningtable', 'dog', 'horse',
+                       'motorbike', 'person', 'pottedplant',
+                       'sheep', 'sofa', 'train', 'tvmonitor']
+
+    # classes_coco
+    COCO_INSTANCE_CATEGORY_NAMES = [
+        '__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+        'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+        'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+        'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+        'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+        'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+        'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl',
+        'banana', 'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza',
+        'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table',
+        'N/A', 'N/A', 'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+        'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book',
+        'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'
+    ]
+```
+
+<img src="https://image.zhangxiann.com/20200708205753.png" alt="img" style="zoom: 33%;" />
+
+下面的例子是使用 Faster RCNN 进行行人检测的 Finetune。
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128191643431.png" alt="image-20220128191643431" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128191654285.png" alt="image-20220128191654285" style="zoom:80%;" />
+
+在代码中首先对**数据和标签**同时进行数据增强，因为对图片进行改变，框的位置也会变化，这里主要做了翻转图像和边界框的数据增强。
+
+构建模型时，需要修改输出的类别为 2，一类是背景，一类是行人。
+
+```python
+model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+in_features = model.roi_heads.box_predictor.cls_score.in_features
+model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
+```
+
+这里不用构造 Loss，因为在 Faster RCNN 中已经构建了 Loss。在训练时，需要把 image 和 target 的 tuple 转换为 list，再输入模型。模型返回的不是真正的标签，而是直接返回 Loss，所以我们可以直接利用这个 Loss 进行反向传播。
+
+```python
+import os
+import time
+import torch.nn as nn
+import torch
+import random
+import numpy as np
+import torchvision.transforms as transforms
+import torchvision
+from PIL import Image
+import torch.nn.functional as F
+from my_dataset import PennFudanDataset
+from common_tools import set_seed
+from torch.utils.data import DataLoader
+from matplotlib import pyplot as plt
+from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
+from torchvision.transforms import functional as F
+import enviroments
+
+set_seed(1)  # 设置随机种子
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# classes_coco
+COCO_INSTANCE_CATEGORY_NAMES = [
+    '__background__', 'person', 'bicycle', 'car', 'motorcycle', 'airplane', 'bus',
+    'train', 'truck', 'boat', 'traffic light', 'fire hydrant', 'N/A', 'stop sign',
+    'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow',
+    'elephant', 'bear', 'zebra', 'giraffe', 'N/A', 'backpack', 'umbrella', 'N/A', 'N/A',
+    'handbag', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+    'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket',
+    'bottle', 'N/A', 'wine glass', 'cup', 'fork', 'knife', 'spoon', 'bowl',
+    'banana', 'apple', 'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza',
+    'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed', 'N/A', 'dining table',
+    'N/A', 'N/A', 'toilet', 'N/A', 'tv', 'laptop', 'mouse', 'remote', 'keyboard', 'cell phone',
+    'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'N/A', 'book',
+    'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush'
+]
+
+
+def vis_bbox(img, output, classes, max_vis=40, prob_thres=0.4):
+    fig, ax = plt.subplots(figsize=(12, 12))
+    ax.imshow(img, aspect='equal')
+
+    out_boxes = output_dict["boxes"].cpu()
+    out_scores = output_dict["scores"].cpu()
+    out_labels = output_dict["labels"].cpu()
+
+    num_boxes = out_boxes.shape[0]
+    for idx in range(0, min(num_boxes, max_vis)):
+
+        score = out_scores[idx].numpy()
+        bbox = out_boxes[idx].numpy()
+        class_name = classes[out_labels[idx]]
+
+        if score < prob_thres:
+            continue
+
+        ax.add_patch(plt.Rectangle((bbox[0], bbox[1]), bbox[2] - bbox[0], bbox[3] - bbox[1], fill=False,
+                                   edgecolor='red', linewidth=3.5))
+        ax.text(bbox[0], bbox[1] - 2, '{:s} {:.3f}'.format(class_name, score), bbox=dict(facecolor='blue', alpha=0.5),
+                fontsize=14, color='white')
+    plt.show()
+    plt.close()
+
+
+class Compose(object):
+    def __init__(self, transforms):
+        self.transforms = transforms
+
+    def __call__(self, image, target):
+        for t in self.transforms:
+            image, target = t(image, target)
+        return image, target
+
+
+class RandomHorizontalFlip(object):
+    def __init__(self, prob):
+        self.prob = prob
+
+    def __call__(self, image, target):
+        if random.random() < self.prob:
+            height, width = image.shape[-2:]
+            image = image.flip(-1)
+            bbox = target["boxes"]
+            bbox[:, [0, 2]] = width - bbox[:, [2, 0]]
+            target["boxes"] = bbox
+        return image, target
+
+
+class ToTensor(object):
+    def __call__(self, image, target):
+        image = F.to_tensor(image)
+        return image, target
+
+
+if __name__ == "__main__":
+
+    # config
+    LR = 0.001
+    num_classes = 2
+    batch_size = 1
+    start_epoch, max_epoch = 0, 5
+    train_dir = enviroments.pennFudanPed_data_dir
+    train_transform = Compose([ToTensor(), RandomHorizontalFlip(0.5)])
+
+    # step 1: data
+    train_set = PennFudanDataset(data_dir=train_dir, transforms=train_transform)
+
+    # 收集batch data的函数
+    def collate_fn(batch):
+        return tuple(zip(*batch))
+
+    train_loader = DataLoader(train_set, batch_size=batch_size, collate_fn=collate_fn)
+
+    # step 2: model
+    model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+    in_features = model.roi_heads.box_predictor.cls_score.in_features
+    model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes) # replace the pre-trained head with a new one
+
+    model.to(device)
+
+    # step 3: loss
+    # in lib/python3.6/site-packages/torchvision/models/detection/roi_heads.py
+    # def fastrcnn_loss(class_logits, box_regression, labels, regression_targets)
+
+    # step 4: optimizer scheduler
+    params = [p for p in model.parameters() if p.requires_grad]
+    optimizer = torch.optim.SGD(params, lr=LR, momentum=0.9, weight_decay=0.0005)
+    lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
+
+    # step 5: Iteration
+
+    for epoch in range(start_epoch, max_epoch):
+
+        model.train()
+        for iter, (images, targets) in enumerate(train_loader):
+
+            images = list(image.to(device) for image in images)
+            targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
+
+            # if torch.cuda.is_available():
+            #     images, targets = images.to(device), targets.to(device)
+
+            loss_dict = model(images, targets)  # images is list; targets is [ dict["boxes":**, "labels":**], dict[] ]
+
+            losses = sum(loss for loss in loss_dict.values())
+
+            print("Training:Epoch[{:0>3}/{:0>3}] Iteration[{:0>3}/{:0>3}] Loss: {:.4f} ".format(
+                epoch, max_epoch, iter + 1, len(train_loader), losses.item()))
+
+            optimizer.zero_grad()
+            losses.backward()
+            optimizer.step()
+
+        lr_scheduler.step()
+
+    # test
+    model.eval()
+
+    # config
+    vis_num = 5
+    vis_dir = os.path.join(BASE_DIR, "..", "..", "data", "PennFudanPed", "PNGImages")
+    img_names = list(filter(lambda x: x.endswith(".png"), os.listdir(vis_dir)))
+    random.shuffle(img_names)
+    preprocess = transforms.Compose([transforms.ToTensor(), ])
+
+    for i in range(0, vis_num):
+
+        path_img = os.path.join(vis_dir, img_names[i])
+        # preprocess
+        input_image = Image.open(path_img).convert("RGB")
+        img_chw = preprocess(input_image)
+
+        # to device
+        if torch.cuda.is_available():
+            img_chw = img_chw.to('cuda')
+            model.to('cuda')
+
+        # forward
+        input_list = [img_chw]
+        with torch.no_grad():
+            tic = time.time()
+            print("input img tensor shape:{}".format(input_list[0].shape))
+            output_list = model(input_list)
+            output_dict = output_list[0]
+            print("pass: {:.3f}s".format(time.time() - tic))
+
+        # visualization
+        vis_bbox(input_image, output_dict, COCO_INSTANCE_CATEGORY_NAMES, max_vis=20, prob_thres=0.5)  # for 2 epoch for nms
+```
+
+# 25.GAN（生成对抗网络）简介
+
+GAN 可以看作是一种可以生成特定分布数据的模型。
+
+下面的代码是使用 Generator 来生成人脸图像，Generator 已经训练好保存在 pkl 文件中，只需要加载参数即可。由于模型是在多 GPU 的机器上训练的，因此加载参数后需要使用`remove_module()`函数来修改`state_dict`中的`key`。
+
+```python
+def remove_module(state_dict_g):
+    # remove module.
+    from collections import OrderedDict
+
+    new_state_dict = OrderedDict()
+    for k, v in state_dict_g.items():
+        namekey = k[7:] if k.startswith('module.') else k
+        new_state_dict[namekey] = v
+
+    return new_state_dict
+```
+
+把随机的高斯噪声输入到模型中，就可以得到人脸输出，最后进行可视化。全部代码如下：
+
+```python
+import os
+import torch.utils.data
+import torchvision.transforms as transforms
+import torchvision.utils as vutils
+import numpy as np
+import matplotlib.pyplot as plt
+from common_tools import set_seed
+from torch.utils.data import DataLoader
+from my_dataset import CelebADataset
+from dcgan import Discriminator, Generator
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
+def remove_module(state_dict_g):
+    # remove module.
+    from collections import OrderedDict
+
+    new_state_dict = OrderedDict()
+    for k, v in state_dict_g.items():
+        namekey = k[7:] if k.startswith('module.') else k
+        new_state_dict[namekey] = v
+
+    return new_state_dict
+
+set_seed(1)  # 设置随机种子
+
+# config
+path_checkpoint = os.path.join(BASE_DIR, "gan_checkpoint_14_epoch.pkl")
+image_size = 64
+num_img = 64
+nc = 3
+nz = 100
+ngf = 128
+ndf = 128
+
+d_transforms = transforms.Compose([transforms.Resize(image_size),
+                   transforms.CenterCrop(image_size),
+                   transforms.ToTensor(),
+                   transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+               ])
+
+# step 1: data
+fixed_noise = torch.randn(num_img, nz, 1, 1, device=device)
+
+flag = 0
+# flag = 1
+if flag:
+    z_idx = 0
+    single_noise = torch.randn(1, nz, 1, 1, device=device)
+    for i in range(num_img):
+        add_noise = single_noise
+        add_noise = add_noise[0, z_idx, 0, 0] + i*0.01
+        fixed_noise[i, ...] = add_noise
+
+# step 2: model
+net_g = Generator(nz=nz, ngf=ngf, nc=nc)
+# net_d = Discriminator(nc=nc, ndf=ndf)
+checkpoint = torch.load(path_checkpoint, map_location="cpu")
+
+state_dict_g = checkpoint["g_model_state_dict"]
+state_dict_g = remove_module(state_dict_g)
+net_g.load_state_dict(state_dict_g)
+net_g.to(device)
+# net_d.load_state_dict(checkpoint["d_model_state_dict"])
+# net_d.to(device)
+
+# step3: inference
+with torch.no_grad():
+    fake_data = net_g(fixed_noise).detach().cpu()
+img_grid = vutils.make_grid(fake_data, padding=2, normalize=True).numpy()
+img_grid = np.transpose(img_grid, (1, 2, 0))
+plt.imshow(img_grid)
+plt.show()
+```
+
+<img src="https://image.zhangxiann.com/20200709232923.png" alt="img" style="zoom:80%;" />
+
+## GAN 的网络结构
+
+<img src="https://image.zhangxiann.com/20200709233026.png" alt="img" style="zoom:80%;" />
+
+ Generator 接受随机噪声$z$作为输入，输出生成的数据$G(z)$。Generator 的目标是让生成数据和真实数据的分布越接近。Discriminator 接收$G(z)$和随机选取的真实数据$x$，目标是分类真实数据和生成数据，属于 2 分类问题。Discriminator 的目标是把它们二者之间分开。这里体现了对抗的思想，也就是 Generator 要欺骗 Discriminator，而 Discriminator 要识别 Generator。
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128192052734.png" alt="image-20220128192052734" style="zoom:80%;" />
+
+## GAN 的训练
+
+1. 首先固定 Generator，训练 Discriminator。
+
+   - 输入：真实数据$x$，Generator 生成的数据$G(z)$
+   - 输出：二分类概率
+
+   从噪声分布中随机采样噪声$z$，经过 Generator 生成$G(z)$。$G(z)$和$x$输入到 Discriminator 得到$D(x)$和$D(G(z))$，损失函数为$\frac{1}{m} \sum*{i=1}^{m}\left[\log D\left(\boldsymbol{x}^{(i)}\right)+\log \left(1-D\left(G\left(\boldsymbol{z}^{(i)}\right)\right)\right)\right]$。
+
+   这里是最大化损失函数，因此使用梯度上升法更新参数：$$\nabla*{\theta*{d}} \frac{1}{m} \sum*{i=1}^{m}\left[\log D\left(\boldsymbol{x}^{(i)}\right)+\log \left(1-D\left(G\left(\boldsymbol{z}^{(i)}\right)\right)\right)\right]$$。
+
+2. 固定 Discriminator，训练 Generator。
+
+   - 输入：随机噪声$z$
+   - 输出：分类概率$D(G(z))$，目的是使$D(G(z))=1$
+
+   从噪声分布中重新随机采样噪声$z$，经过 Generator 生成$G(z)$。$G(z)$输入到 Discriminator 得到$D(G(z))$，损失函数为$\frac{1}{m} \sum*{i=1}^{m} \log \left(1-D\left(G\left(z^{(i)}\right)\right)\right)$。
+
+   这里是最小化损失函数，使用梯度下降法更新参数：$\nabla*{\theta*{g}} \frac{1}{m} \sum*{i=1}^{m} \log \left(1-D\left(G\left(z^{(i)}\right)\right)\right)$。
+
+下面是 DCGAN 的例子，DC 的含义是 Deep Convolution，指 Generator 和 Discriminator 都是卷积神经网络。
+
+Generator 的网络结构如下图左边，使用的是 transpose convolution，输入是 100 维的随机噪声$z$，形状是$(1,100,1,1)$，看作是 100 个 channel，每个特征图宽高是$1 \times 1$；输出是$(3,64,64)$的图片$G(z)$。
+
+Generator 的网络结构如下图右边，使用的是 convolution，输入是$G(z)$或者真实图片$x$，输出是 2 分类概率。
+
+<img src="https://image.zhangxiann.com/20200710104917.png" alt="img" style="zoom:80%;" />
+
+ 使用数据集来源于 CelebA 人脸数据，但是由于人脸在图片中的角度、位置、所占区域大小等都不一样。如下图所示。
+
+<img src="https://image.zhangxiann.com/20200710105813.png" alt="img" style="zoom:80%;" />
+
+需要对关键点检测算法对人脸在图片中的位置和大小等进行矫正。下图是矫正后的数据。
+
+<img src="https://image.zhangxiann.com/20200710105836.png" alt="img" style="zoom:80%;" />
+
+在对图片进行标准化时，经过`toTensor()`转换到$[0,1]$后，把`transforms.Normalize()`的均值和标准差均设置为 0.5，这样就把数据转换为到$[-1,1]$区间，因为$((0,1)-0.5)/0.5=(-1,1)$。
+
+DCGAN 的定义如下：
+
+```python
+from collections import OrderedDict
+import torch
+import torch.nn as nn
+
+
+class Generator(nn.Module):
+    def __init__(self, nz=100, ngf=128, nc=3):
+        super(Generator, self).__init__()
+        self.main = nn.Sequential(
+            # input is Z, going into a convolution
+            nn.ConvTranspose2d(nz, ngf * 8, 4, 1, 0, bias=False),
+            nn.BatchNorm2d(ngf * 8),
+            nn.ReLU(True),
+            # state size. (ngf*8) x 4 x 4
+            nn.ConvTranspose2d(ngf * 8, ngf * 4, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ngf * 4),
+            nn.ReLU(True),
+            # state size. (ngf*4) x 8 x 8
+            nn.ConvTranspose2d(ngf * 4, ngf * 2, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ngf * 2),
+            nn.ReLU(True),
+            # state size. (ngf*2) x 16 x 16
+            nn.ConvTranspose2d(ngf * 2, ngf, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ngf),
+            nn.ReLU(True),
+            # state size. (ngf) x 32 x 32
+            nn.ConvTranspose2d(ngf, nc, 4, 2, 1, bias=False),
+            nn.Tanh()
+            # state size. (nc) x 64 x 64
+        )
+
+    def forward(self, input):
+        return self.main(input)
+
+    def initialize_weights(self, w_mean=0., w_std=0.02, b_mean=1, b_std=0.02):
+        for m in self.modules():
+            classname = m.__class__.__name__
+            if classname.find('Conv') != -1:
+                nn.init.normal_(m.weight.data, w_mean, w_std)
+            elif classname.find('BatchNorm') != -1:
+                nn.init.normal_(m.weight.data, b_mean, b_std)
+                nn.init.constant_(m.bias.data, 0)
+
+
+class Discriminator(nn.Module):
+    def __init__(self, nc=3, ndf=128):
+        super(Discriminator, self).__init__()
+        self.main = nn.Sequential(
+            # input is (nc) x 64 x 64
+            nn.Conv2d(nc, ndf, 4, 2, 1, bias=False),
+            nn.LeakyReLU(0.2, inplace=True),
+            # state size. (ndf) x 32 x 32
+            nn.Conv2d(ndf, ndf * 2, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ndf * 2),
+            nn.LeakyReLU(0.2, inplace=True),
+            # state size. (ndf*2) x 16 x 16
+            nn.Conv2d(ndf * 2, ndf * 4, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ndf * 4),
+            nn.LeakyReLU(0.2, inplace=True),
+            # state size. (ndf*4) x 8 x 8
+            nn.Conv2d(ndf * 4, ndf * 8, 4, 2, 1, bias=False),
+            nn.BatchNorm2d(ndf * 8),
+            nn.LeakyReLU(0.2, inplace=True),
+            # state size. (ndf*8) x 4 x 4
+            nn.Conv2d(ndf * 8, 1, 4, 1, 0, bias=False),
+            nn.Sigmoid()
+        )
+
+    def forward(self, input):
+        return self.main(input)
+
+    def initialize_weights(self, w_mean=0., w_std=0.02, b_mean=1, b_std=0.02):
+        for m in self.modules():
+            classname = m.__class__.__name__
+            if classname.find('Conv') != -1:
+                nn.init.normal_(m.weight.data, w_mean, w_std)
+            elif classname.find('BatchNorm') != -1:
+                nn.init.normal_(m.weight.data, b_mean, b_std)
+                nn.init.constant_(m.bias.data, 0)
+```
+
+其中`nz`是输入的通道数 100，`ngf`表示最后输出的图片宽高，这里设置为 64，会有一个倍数关系, `nc`是最后的输出通道数 3。
+
+在迭代训练时，首先根据 DataLoader 获得的真实数据的 batch size，构造真实的标签 1；
+
+然后随机生成噪声，构造生成数据的标签 0。把噪声输入到 Generator 中，得到生成数据。
+
+分别把生成数据和真实数据输入到 Discriminator，得到两个 Loss，分别求取梯度相加，然后使用 Discriminator 的优化器更新 Discriminator 的参数。
+
+然后生成数据的标签改为 1，输入到 Generator，求取梯度，这次使用 Generator 的优化器更新 Generator 的参数。
+
+## GAN 的一些应用
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128192401020.png" alt="image-20220128192401020" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128192418213.png" alt="image-20220128192418213" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128192435734.png" alt="image-20220128192435734" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128192451260.png" alt="image-20220128192451260" style="zoom:80%;" />
+
+<img src="C:\Users\14242\AppData\Roaming\Typora\typora-user-images\image-20220128192502907.png" alt="image-20220128192502907" style="zoom:80%;" />
+
